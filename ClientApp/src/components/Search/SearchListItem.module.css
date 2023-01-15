@@ -1,0 +1,79 @@
+.searchItem {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.searchItem img {
+  width: 100%;
+}
+
+.searchItem h3 {
+  color: #3c71c2;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.searchItem .tag {
+  margin: 10px 0;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 5px;
+  color: #fff;
+  background-color: #008009;
+}
+
+.searchItem .type {
+  margin: 10px 0;
+}
+
+.searchItem .cancel {
+  color: #008009;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.searchItem .cancelText {
+  color: #008009;
+}
+
+.searchCol3 .rateText {
+  text-align: left;
+  font-size: 16px;
+  color: #293f62;
+  font-weight: bold;
+}
+
+.searchCol3 .rate {
+  text-align: center;
+  font-size: 14px;
+  background-color: #003580;
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.searchCol3 h3 {
+  margin-top: 110px;
+  text-align: right;
+  color: #000;
+  font-weight: bold;
+}
+
+.searchCol3 p {
+  text-align: right;
+  font-size: 12px;
+  color: grey;
+}
+
+.searchCol3 button {
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px 5px;
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

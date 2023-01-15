@@ -1,0 +1,37 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#subscribeForm {
+  text-align: center;
+  margin-top: 50px;
+  color: #fff;
+  background-color: #003580;
+  padding: 40px 20px 40px 20px;
+}
+
+#subscribeForm form {
+  margin-top: 20px;
+}
+
+#subscribeForm input {
+  padding: 10px;
+  width: 300px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+#subscribeForm input:focus {
+  outline: none;
+}
+
+#subscribeForm button {
+  padding: 10px 5px;
+  border-radius: 5px;
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

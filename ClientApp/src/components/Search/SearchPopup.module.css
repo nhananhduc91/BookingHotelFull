@@ -1,0 +1,55 @@
+.searchPopup {
+  height: 550px;
+  padding: 20px 10px;
+  background-color: #febb02;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.searchPopup h3,
+.searchPopup h6 {
+  margin-bottom: 10px;
+}
+
+.searchPopup span {
+  margin: 0 10px;
+}
+
+input {
+  border: none;
+  margin-bottom: 10px;
+}
+
+.destination {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.checkIn,
+.checkOut {
+  width: 43%;
+  height: 30px;
+  padding: 0 10px;
+}
+
+.options span {
+  display: inline-block;
+  width: 70%;
+}
+
+.options input {
+  width: 20%;
+  height: 25px;
+  text-align: right;
+}
+
+.searchPopup button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px 5px;
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

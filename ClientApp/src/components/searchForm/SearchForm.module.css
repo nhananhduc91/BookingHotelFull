@@ -1,0 +1,68 @@
+.container {
+  padding: 0 20px;
+}
+.formContainer {
+  max-width: 1200px;
+  margin: -30px auto 20px auto;
+  position: relative;
+}
+#searchForm {
+  color: grey;
+  font-size: 14px;
+  border: 2px solid #febb02;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 8px 30px;
+}
+
+#searchForm input {
+  margin-bottom: 0;
+  width: 180px;
+}
+
+#searchForm .date p {
+  padding: 0 10px;
+}
+
+.dateRange {
+  position: absolute;
+  top: 70px;
+  left: 300px;
+  z-index: 99;
+}
+
+#searchForm .peopleItem {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+}
+
+#searchForm .peopleItem input {
+  width: 30px;
+}
+
+#searchForm i {
+  margin-right: 5px;
+}
+#searchForm p {
+  margin-bottom: 0;
+}
+
+#searchForm input {
+  border: none;
+}
+
+#searchForm .submitBtn {
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .dateRange {
+    left: 50px;
+    top: 60px;
+  }
+}

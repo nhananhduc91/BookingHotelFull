@@ -1,0 +1,9 @@
+.container {
+  padding: 40px 20px;
+}
+
+.searchContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}

@@ -1,0 +1,98 @@
+.gallery {
+  padding: 0 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.propertyTitle {
+  margin: 20px 0;
+}
+
+/* CITY */
+
+.cityItem {
+  height: 250px;
+  position: relative;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.cityItem img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.cityItem h3 {
+  position: absolute;
+  bottom: 45px;
+  left: 10px;
+}
+
+.cityItem p {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* TYPE */
+
+.typeItem {
+  height: 150px;
+  margin-bottom: 80px;
+}
+
+.typeItem img {
+  width: 100%;
+  height: 100%;
+}
+
+.typeItem h4 {
+  margin-top: 10px;
+}
+
+/* HOTEL */
+
+.hotelItem {
+  height: 200px;
+  margin-bottom: 140px;
+  cursor: pointer;
+}
+
+.hotelItem img {
+  width: 100%;
+  height: 100%;
+}
+
+.hotelItem a {
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.hotelItem .name {
+  margin: 10px 0;
+}
+
+.hotelItem .city {
+  margin-bottom: 10px;
+}
+
+.hotelItem .price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hotelItem .rate {
+  background-color: #003580;
+  padding: 5px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.hotelItem .type {
+  font-weight: bold;
+}

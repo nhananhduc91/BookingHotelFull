@@ -1,0 +1,86 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.container h3,
+.container p {
+  margin-bottom: 10px;
+}
+
+.container .address {
+  font-size: 12px;
+}
+
+.container .address i {
+  color: #000;
+}
+
+.container .distance {
+  font-weight: bold;
+  color: #3c71c2;
+}
+
+.container .price {
+  color: #008009;
+  font-weight: bold;
+}
+.container button {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.hotelImg {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.hotelImg img {
+  width: 100%;
+}
+
+.description {
+  margin-right: 20px;
+}
+
+.description p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.booking {
+  width: 100%;
+  padding: 20px;
+  background-color: #ebf3ff;
+}
+
+.booking h4 {
+  margin-bottom: 20px;
+}
+
+.booking p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.booking .price {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000;
+}
+
+.booking .price span {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.booking button {
+  width: 100%;
+}

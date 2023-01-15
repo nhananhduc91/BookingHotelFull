@@ -1,0 +1,32 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#navbar {
+  color: #fff;
+  background-color: #003580;
+  padding: 20px;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.brand a {
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+#navbar button {
+  color: #003580;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.registerBtn {
+  margin-right: 10px;
+}
