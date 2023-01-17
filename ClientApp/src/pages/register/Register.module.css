@@ -1,0 +1,35 @@
+#registerForm {
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#registerForm h1{
+    margin-bottom: 30px;
+}
+
+#registerForm form{
+    text-align: left;
+}
+
+#registerForm p {
+  margin-bottom: 5px;
+}
+
+#registerForm input {
+  min-width: 250px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+#registerForm button {
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}

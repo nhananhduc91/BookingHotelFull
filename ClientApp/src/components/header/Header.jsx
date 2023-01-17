@@ -10,7 +10,7 @@ export default function Header() {
           Get rewards for your travels - unlock instant savings of 10% or more
           with a free acount
         </p>
-        <button className={styles.btnSignin}>Sign in/Register</button>
+        <button className={styles.btnSignin}>Sign in / Register</button>
       </div>
     </header>
   );
