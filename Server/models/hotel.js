@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const hotelSchema = new Schema({
   name: {
@@ -7,36 +7,36 @@ const hotelSchema = new Schema({
   },
   city: {
     type: String,
-    require: true
+    require: true,
   },
   address: {
     type: String,
-    require: true
+    require: true,
   },
   distance: {
     type: Number,
-    require: true
+    require: true,
   },
   photos: {
     type: String,
-    require: true
+    require: true,
   },
   desc: {
     type: String,
-    require: true
+    require: true,
   },
   rating: {
     type: Number,
-    require: true
+    require: true,
   },
   featured: {
     type: String,
-    require: true
+    require: true,
   },
   rooms: {
     type: String,
-    require: true
-  }
+    require: true,
+  },
 });
 
-module.exports = model('Hotel', hotelSchema);
+module.exports = model("Hotel", hotelSchema);
