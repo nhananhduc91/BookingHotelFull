@@ -15,7 +15,6 @@ const Home = () => {
     const data = await response.json();
     setHotelByRegion(data);
   };
-  console.log(hotelByRegion);
   const hotelInHaNoi = hotelByRegion?.filter(
     (hotel) => hotel.city === "Ha Noi"
   );

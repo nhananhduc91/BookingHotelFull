@@ -9,6 +9,7 @@ app.use(cors());
 const userRoute = require("./routes/user");
 const hotelRoute = require('./routes/hotel');
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

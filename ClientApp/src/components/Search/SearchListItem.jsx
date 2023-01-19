@@ -8,36 +8,23 @@ export default function SearchListItem(props) {
     <div className={styles.searchItem}>
       <div className="row">
         <div className="col-12 col-md-3 mb-2">
-          <img src={item.image_url} alt="searchList" />
+          <img src={item.photos[2]} alt="searchList" />
         </div>
         <div className="col-7 col-md-6">
           <div className={styles.searchCol2}>
             <h3>{item.name}</h3>
-            <p>{item.distance} from center</p>
-            <p className={styles.tag}>{item.tag}</p>
-            <h4>{item.description}</h4>
-            <p className={styles.type}>{item.type}</p>
-            {item.free_cancel && (
-              <p className={styles.cancel}>Free cancellation</p>
-            )}
-            {item.free_cancel && (
-              <p className={styles.cancelText}>
-                You can cancel later, so lock in this great price today!
-              </p>
-            )}
+            <p>{item.distance}m from center</p>
+            <p className={styles.tag}>Free Airport Taxi</p>
+            <h4>{item.type.toUpperCase()}</h4>
+            <p className={styles.cancel}>Free cancellation</p>
+            <p className={styles.cancelText}>
+              You can cancel later, so lock in this great price today!
+            </p>
           </div>
         </div>
         <div className="col-5 col-md-3">
           <div className={styles.searchCol3}>
-            <div className="row">
-              <div className="col-8">
-                <p className={styles.rateText}>{item.rate_text}</p>
-              </div>
-              <div className="col-4">
-                <p className={styles.rate}>{item.rate}</p>
-              </div>
-            </div>
-            <h3>${item.price}</h3>
+            <h3>${item.cheapestPrice}</h3>
             <p>Includes taxes and fees</p>
             <button
               onClick={() => {

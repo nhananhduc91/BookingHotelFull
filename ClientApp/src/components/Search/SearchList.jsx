@@ -1,11 +1,11 @@
 import React from "react";
-import searchData from "../../data/search.json";
 import SearchListItem from "./SearchListItem";
 
-export default function SearchList() {
+export default function SearchList(props) {
+  const { searchHotels } = props;
   return (
     <div className="col-12 col-lg-9">
-      {searchData.map((item, index) => {
+      {searchHotels?.map((item, index) => {
         return (
           <div key={index}>
             <SearchListItem item={item} />
