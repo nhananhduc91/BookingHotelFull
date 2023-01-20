@@ -1,0 +1,14 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.transaction h3 {
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.transaction table {
+  width: 100%;
+}

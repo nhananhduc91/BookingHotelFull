@@ -10,7 +10,7 @@ const transactionSchema = new Schema({
     require: true
   },
   room: {
-    type: String,
+    type: Array,
     require: true
   },
   dateStart: {

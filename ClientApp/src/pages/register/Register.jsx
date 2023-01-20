@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
@@ -7,6 +8,9 @@ import { apiUrl } from "../../utils/api";
 import style from "./Register.module.css";
 
 export default function Register() {
+  const [users, setUsers] = useState();
+  console.log(users);
+
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     userName: "",
@@ -17,9 +21,25 @@ export default function Register() {
     isAdmin: false,
   });
 
+  const fetchUsers = async () => {
+    const response = await fetch(apiUrl.getUser);
+    const data = await response.json();
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   const handleChange = (e) => {
     let { value, name } = e.target;
     const newUserData = { ...userData, [name]: value };
+    for (const user of users) {
+      if (user.email === users.email) {
+        alert("User already registered! Please choose another email!");
+      }
+      return;
+    }
     setUserData(newUserData);
   };
 
@@ -88,7 +108,7 @@ export default function Register() {
             onChange={handleChange}
           />
           <div>
-          <p className={style.loginLink}>
+            <p className={style.loginLink}>
               Already have an account?{" "}
               <span
                 onClick={() => {

@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Transaction = require("../models/transaction");
 
 exports.getUsers = (req, res, next) => {
   User.find()
@@ -30,3 +31,16 @@ exports.postUser = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.postTransaction = (req, res, next) => {
+  const { user, hotel, room, dateStart, dateEnd, price, payment, status } = req.body.bookingData;
+  const transaction = new Transaction({ user, hotel, room, dateStart, dateEnd, price, payment, status });
+  transaction
+    .save()
+    .then(() => {
+      res.end();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

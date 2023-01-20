@@ -13,14 +13,20 @@ export default function Navbar() {
     <div id={styles.navbar}>
       <div className={styles.container}>
         <div className={styles.brand}>
-          <a href="./">Booking Website</a>
+          <h3
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Booking Website
+          </h3>
           {userLogin && (
             <div>
               <span className={styles.userEmail}>{userLogin.email}</span>
               <button
                 className={styles.registerBtn}
                 onClick={() => {
-                  navigate("/transactions");
+                  navigate("/transaction");
                 }}
               >
                 Transactions

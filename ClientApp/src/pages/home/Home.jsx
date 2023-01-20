@@ -7,8 +7,10 @@ import Footer from "../../components/footer/Footer";
 import SearchForm from "../../components/searchForm/SearchForm";
 import { useEffect, useState } from "react";
 import { apiUrl } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [hotelByRegion, setHotelByRegion] = useState();
   const fetchHotelByRegion = async () => {
     const response = await fetch(apiUrl.getHotelByRegion);
@@ -28,6 +30,7 @@ const Home = () => {
   useEffect(() => {
     fetchHotelByRegion();
   }, []);
+
   return (
     <div>
       <Navbar />
@@ -92,7 +95,7 @@ const Home = () => {
               return (
                 <div
                   onClick={() => {
-                    window.location.replace("/detail");
+                    navigate(`hotel/${hotel._id.$oid}`);
                   }}
                   key={index}
                   className="col-6 col-md-3 mb-2"

@@ -1,0 +1,77 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.description {
+  margin-right: 20px;
+}
+
+.description p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.booking {
+  width: 100%;
+  padding: 20px;
+  background-color: #ebf3ff;
+}
+
+.booking h4 {
+  margin-bottom: 20px;
+}
+
+.booking p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.booking .price {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+.booking .price span {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.reserveButton {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #0071c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.bookingForm form {
+  text-align: left;
+}
+
+.bookingForm p {
+  margin-bottom: 5px;
+}
+
+.bookingForm input {
+  width: 100%;
+  min-width: 300px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.paymentMethod select {
+  cursor: pointer;
+  height: 40px;
+  padding: 0 5px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  background-color: #eff2f7;
+}

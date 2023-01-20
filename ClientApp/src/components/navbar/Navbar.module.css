@@ -13,9 +13,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
-.brand a {
+.brand h3 {
   font-weight: bold;
   transition: all 0.3s;
 }
@@ -31,6 +32,6 @@
   margin-right: 10px;
 }
 
-.userEmail{
+.userEmail {
   margin-right: 10px;
 }

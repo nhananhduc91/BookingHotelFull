@@ -97,7 +97,10 @@
 			"https://q-xx.bstatic.com/xdata/images/hotel/840x460/342349064.jpg?k=d91e6cc100ae3214c81d7e8ebaaba95adb9b6d66b3cb491a2bacbb162ee749df&o=",
 			"https://q-xx.bstatic.com/xdata/images/hotel/840x460/342349111.jpg?k=40e4775e81abb65403ac305f04a7dd8e5ad889f5c33151f763e4ed1af3a63e7a&o="
 		],
-		"rooms": "[6311c083f2fce6ea18172fba, 6311c0a8f2fce6ea18172fc3]",
+		"rooms": [
+			"6311c083f2fce6ea18172fba",
+			"6311c0a8f2fce6ea18172fc3"
+		],
 		"title": "Alagon Saigon Hotel & Spa",
 		"type": "hotel"
 	}

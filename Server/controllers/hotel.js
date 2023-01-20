@@ -15,6 +15,18 @@ exports.getHotelByRegion = (req, res, next) => {
 
 exports.postSearchHotel = (req, res, next) => {
   const { destination, checkIn, checkOut, minPricePerNight, maxPricePerNight, adult, children, room } = req.body.searchInput;
-  const searchHotels = hotels?.filter(hotel => hotel.city.toLowerCase().includes(destination?.toLowerCase()) && hotel.cheapestPrice <= minPricePerNight && hotel.rooms.length >= room);
+  const searchHotels = hotels?.filter(hotel => hotel.city.toLowerCase().includes(destination?.toLowerCase()) && hotel.cheapestPrice <= Number(minPricePerNight) && hotel.rooms.length >= Number(room));
   res.send(searchHotels);
+};
+
+exports.postSearchHotelInHomePage = (req, res, next) => {
+  const { destination, checkIn, checkOut, adult, children, room } = req.body.searchInput;
+  const searchHotels = hotels?.filter(hotel => hotel.city.toLowerCase().includes(destination?.toLowerCase()) && hotel.rooms.length >= Number(room));
+  res.send(searchHotels);
+};
+
+exports.getHotelDetail = (req, res, next) => {
+  const { hotelId } = req.params;
+  const hotelDetail = hotels.find(hotel => hotel._id.$oid === hotelId);
+  res.send(hotelDetail);
 };

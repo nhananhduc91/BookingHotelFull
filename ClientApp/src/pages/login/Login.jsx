@@ -38,7 +38,11 @@ export default function Login() {
     );
     if (userCheck) {
       alert("Login successful!");
-      saveToStorage("userSignIn", { email: userCheck.email });
+      saveToStorage("userSignIn", {
+        email: userCheck.email,
+        fullName: userCheck.fullName,
+        phoneNumber: userCheck.phoneNumber,
+      });
       navigate("/");
     } else {
       alert("Wrong user name or password!");
@@ -65,7 +69,7 @@ export default function Login() {
             type="text"
             placeholder="Enter your password"
             onChange={handleChange}
-          />                     
+          />
           <div>
             <p className={style.registerLink}>
               Don't have an account?{" "}

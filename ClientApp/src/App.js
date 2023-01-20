@@ -7,6 +7,8 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import Register from "./pages/register/Register";
 import { Provider } from 'react-redux';
 import store from "./redux/store";
+import Booking from "./pages/booking/Booking";
+import Transaction from "./pages/transaction/Transaction";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/hotel/:hotelId" element={<Detail />} />
+          <Route path="/booking/:hotelId" element={<Booking />} />
+          <Route path="/transaction" element={<Transaction />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<PageNotFound />} />

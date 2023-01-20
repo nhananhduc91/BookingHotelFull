@@ -6,8 +6,12 @@ import format from "date-fns/format";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchHotelsActions } from "../../redux/store";
 
 export default function SearchForm() {
+  const dispatch = useDispatch();
   //Thiết lập trạng thái mặc định cho lịch
   const [range, setRange] = useState([
     {
@@ -16,6 +20,30 @@ export default function SearchForm() {
       key: "selection",
     },
   ]);
+  const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState({
+    destination: "",
+    adult: 0,
+    children: 0,
+    room: 0,
+  });
+
+  const handleChange = (e) => {
+    let { value, name } = e.target;
+    const newSearchValue = {
+      ...searchInput,
+      [name]: value,
+    };
+    setSearchInput(newSearchValue);
+  };
+
+  useEffect(() => {
+    setSearchInput({
+      ...searchInput,
+      checkIn: format(range[0].startDate, "MM-dd-yyyy"),
+      checkOut: format(range[0].endDate, "MM-dd-yyyy"),
+    });
+  }, [range]);
 
   //Thiết lập trạng thái ẩn hiện lịch
   const [showDateRange, setShowDateRange] = useState(false);
@@ -41,12 +69,10 @@ export default function SearchForm() {
     }
   };
 
-  const toSearchPage = () => {
-    window.location.replace("/search");
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(searchHotelsActions.getSearchInput(searchInput));
+    navigate("/search");
   };
 
   return (
@@ -56,17 +82,22 @@ export default function SearchForm() {
           <div className="row align-items-center ">
             <div className="col-12 col-md-6 col-lg-3 mb-1">
               <i className="fa fa-bed"></i>
-              <input type="text" placeholder="Where are you going?" />
+              <input
+                type="text"
+                placeholder="Where are you going?"
+                name="destination"
+                onChange={handleChange}
+              />
             </div>
             <div className="col-12 col-md-6 col-lg-4 mb-1">
               <div className="d-flex align-items-center">
                 <i className="fa fa-calendar"></i>
                 <input
-                  value={`${format(
+                  placeholder={`${format(
                     range[0].startDate,
                     "MM/dd/yyyy"
                   )} to ${format(range[0].endDate, "MM/dd/yyyy")}`}
-                  placeholder="When will you going?"
+                  type="text"
                   onClick={() => setShowDateRange(true)}
                 />
               </div>
@@ -76,25 +107,36 @@ export default function SearchForm() {
               <div className="d-flex align-items-center">
                 <i className="fa fa-female"></i>
                 <div className={styles.peopleItem}>
-                  <input type="number" placeholder="1" />
+                  <input
+                    value={searchInput.adult}
+                    type="number"
+                    name="adult"
+                    onChange={handleChange}
+                  />
                   <p>adult</p>
                 </div>
                 <div className={styles.peopleItem}>
-                  <input type="number" placeholder="0" />
+                  <input
+                    value={searchInput.children}
+                    type="number"
+                    name="children"
+                    onChange={handleChange}
+                  />
                   <p>children</p>
                 </div>
                 <div className={styles.peopleItem}>
-                  <input type="number" placeholder="0" />
+                  <input
+                    value={searchInput.room}
+                    type="number"
+                    name="room"
+                    onChange={handleChange}
+                  />
                   <p>room</p>
                 </div>
               </div>
             </div>
             <div className="col-12 col-md-6 col-lg-1 mb-1">
-              <button
-                className={styles.submitBtn}
-                type="submit"
-                onClick={toSearchPage}
-              >
+              <button className={styles.submitBtn} type="submit">
                 Search
               </button>
             </div>
@@ -109,7 +151,9 @@ export default function SearchForm() {
               months={1}
               direction="horizontal"
               className="calendarElement"
-              onChange={(item) => setRange([item.selection])}
+              onChange={(item) => {
+                setRange([item.selection]);
+              }}
             />
           )}
         </div>
