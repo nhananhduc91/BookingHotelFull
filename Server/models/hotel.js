@@ -29,6 +29,10 @@ const hotelSchema = new Schema({
     type: Number,
     require: true,
   },
+  cheapestPrice: {
+    type: Number,
+    require: true
+  },
   featured: {
     type: String,
     require: true,
@@ -37,6 +41,10 @@ const hotelSchema = new Schema({
     type: String,
     require: true,
   },
+  type: {
+    type: String,
+    require: true,
+  }
 });
 
 module.exports = model("Hotel", hotelSchema);

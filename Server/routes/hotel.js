@@ -12,4 +12,5 @@ router.post('/searchHotelInHomePage', postSearchHotelInHomePage);
 router.post("/hotel/:hotelId", getHotelDetail);
 
 
+
 module.exports = router;

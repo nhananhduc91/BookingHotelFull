@@ -30,3 +30,5 @@ exports.getHotelDetail = (req, res, next) => {
   const hotelDetail = hotels.find(hotel => hotel._id.$oid === hotelId);
   res.send(hotelDetail);
 };
+
+

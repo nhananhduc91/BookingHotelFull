@@ -17,7 +17,11 @@ export default function Sidebar() {
         Dashboard
       </p>
       <h5>LIST</h5>
-      <p>
+      <p
+        onClick={() => {
+          navigate("/admin/users");
+        }}
+      >
         <i className="fa fa-user me-2"></i>
         Users
       </p>
@@ -27,11 +31,19 @@ export default function Sidebar() {
       <p>
         <i className="fa fa-bed me-2"></i>Rooms
       </p>
-      <p>
-        <i className="fa fa-exchange-alt me-2"></i>Transaction
+      <p
+        onClick={() => {
+          navigate("/admin/transactions");
+        }}
+      >
+        <i className="fa fa-exchange-alt me-2"></i>Transactions
       </p>
       <h5>NEW</h5>
-      <p>
+      <p
+        onClick={() => {
+          navigate("/admin/addHotel");
+        }}
+      >
         <i className="fa fa-hotel me-2"></i>New Hotel
       </p>
       <p>
