@@ -1,6 +1,6 @@
 export const DOMAIN = "http://localhost:5000/";
 export const apiUrl = {
-  getUser: `${DOMAIN}user`,
+  postLogin: `${DOMAIN}login`,
   postUser: `${DOMAIN}user`,
   getHotelByRegion: `${DOMAIN}hotelByRegion`,
   postSearch: `${DOMAIN}searchHotel`,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -7,22 +7,12 @@ import { saveToStorage } from "../../utils/storage";
 import style from "./Login.module.css";
 
 export default function Login() {
-  const [userData, setUserData] = useState();
   const navigate = useNavigate();
 
-  const fetchUsers = async () => {
-    const response = await fetch(apiUrl.getUser);
-    const data = await response.json();
-    setUserData(data);
-  };
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   const handleChange = (e) => {
     let { value, name } = e.target;
@@ -30,24 +20,30 @@ export default function Login() {
     setLoginData(newUserData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const userCheck = userData.find(
-      (user) =>
-        user.email === loginData.email && user.password === loginData.password
-    );
-    if (userCheck) {
-      alert("Login successful!");
-      saveToStorage("userSignIn", {
-        email: userCheck.email,
-        fullName: userCheck.fullName,
-        phoneNumber: userCheck.phoneNumber,
-      });
+    const response = await fetch(apiUrl.postLogin, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        loginData,
+      }),
+    });
+    const data = await response.json();
+    saveToStorage("userSignIn", {
+      email: data.userInfo.email,
+      fullName: data.userInfo.fullName,
+      phoneNumber: data.userInfo.phoneNumber,
+      userName: data.userInfo.userName,
+    });
+    alert(data.message);
+    if (data.loginStatus) {
       navigate("/");
-    } else {
-      alert("Wrong user name or password!");
     }
   };
+
   return (
     <div>
       <Navbar />
@@ -66,7 +62,7 @@ export default function Login() {
           <input
             value={loginData.password}
             name="password"
-            type="text"
+            type="password"
             placeholder="Enter your password"
             onChange={handleChange}
           />

@@ -19,7 +19,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/hotel/:hotelId" element={<Detail />} />
           <Route path="/booking/:hotelId" element={<Booking />} />
-          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/transaction/:userName" element={<Transaction />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<PageNotFound />} />

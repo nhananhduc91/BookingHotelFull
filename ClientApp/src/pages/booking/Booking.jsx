@@ -26,7 +26,7 @@ export default function Booking() {
   const totalDays = Math.ceil(difference / (1000 * 3600 * 24));
 
   const [bookingData, setBookingData] = useState({
-    user: userInfo.email,
+    user: userInfo.userName,
     hotel: "",
     room: [],
     dateStart: format(range[0].startDate, "dd-MM-yyyy"),
@@ -85,7 +85,6 @@ export default function Booking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(bookingData);
     fetch(apiUrl.postTransaction, {
       method: "POST",
       headers: {
@@ -95,7 +94,7 @@ export default function Booking() {
         bookingData,
       }),
     });
-    navigate("/transaction");
+    navigate(`/transaction/${userInfo.userName}`);
   };
 
   return (
