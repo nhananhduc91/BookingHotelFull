@@ -32,15 +32,17 @@ export default function Login() {
       }),
     });
     const data = await response.json();
-    saveToStorage("userSignIn", {
-      email: data.userInfo.email,
-      fullName: data.userInfo.fullName,
-      phoneNumber: data.userInfo.phoneNumber,
-      userName: data.userInfo.userName,
-    });
     alert(data.message);
-    if (data.loginStatus) {
+    if (data.loginStatus && !data.userInfo.isAdmin) {
+      saveToStorage("userSignIn", {
+        email: data.userInfo.email,
+        fullName: data.userInfo.fullName,
+        phoneNumber: data.userInfo.phoneNumber,
+        userName: data.userInfo.userName,
+      });
       navigate("/");
+    } else if (data.loginStatus && data.userInfo.isAdmin) {
+      window.location.href = "http://localhost:3001";
     }
   };
 

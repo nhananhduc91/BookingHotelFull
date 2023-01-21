@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -40,15 +40,15 @@ export default function Transaction() {
               {transaction?.map((trans, index) => {
                 return (
                   <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td className="text-center">{index + 1}</td>
                     <td>{trans.hotel}</td>
                     <td>
                       {trans.room?.map((room, index) => {
                         return (
-                          <>
+                          <Fragment key={index}>
                             {room}
                             <br />
-                          </>
+                          </Fragment>
                         );
                       })}
                     </td>

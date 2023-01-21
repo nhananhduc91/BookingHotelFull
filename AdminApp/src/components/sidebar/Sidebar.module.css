@@ -1,0 +1,19 @@
+#sidebar {
+  height: 100%;
+  padding: 0 20px;
+  border-right: 1px solid #a9a9a9;
+}
+
+#sidebar h5 {
+  color: #003580;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+#sidebar p {
+  font-weight: bold;
+  color: #2e2e2e;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

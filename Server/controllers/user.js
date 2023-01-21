@@ -6,7 +6,7 @@ exports.postLogin = (req, res, next) => {
   User.findOne({ email, password })
     .then((user) => {
       if (user) {
-        res.send({ userInfo: { email: user.email, fullName: user.fullName, phoneNumber: user.phoneNumber, userName: user.userName }, message: "Login successful!", loginStatus: true });
+        res.send({ userInfo: { email: user.email, fullName: user.fullName, phoneNumber: user.phoneNumber, userName: user.userName, isAdmin: user.isAdmin }, message: "Login successful!", loginStatus: true });
       } else {
         res.send({ message: "Login failed!", loginStatus: false });
       }

@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 const userRoute = require("./routes/user");
 const hotelRoute = require('./routes/hotel');
-
+const adminRoute = require('./routes/admin');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 
 app.use(userRoute);
 app.use(hotelRoute);
+app.use('/admin', adminRoute);
 
 mongoose
   .connect(

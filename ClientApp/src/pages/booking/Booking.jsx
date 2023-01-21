@@ -29,8 +29,8 @@ export default function Booking() {
     user: userInfo.userName,
     hotel: "",
     room: [],
-    dateStart: format(range[0].startDate, "dd-MM-yyyy"),
-    dateEnd: format(range[0].endDate, "dd-MM-yyyy"),
+    dateStart: format(range[0].startDate, "dd/MM/yyyy"),
+    dateEnd: format(range[0].endDate, "dd/MM/yyyy"),
     price: "",
     payment: "",
     status: "Booked",
@@ -55,8 +55,8 @@ export default function Booking() {
   useEffect(() => {
     setBookingData({
       ...bookingData,
-      dateStart: format(range[0].startDate, "dd-MM-yyyy"),
-      dateEnd: format(range[0].endDate, "dd-MM-yyyy"),
+      dateStart: format(range[0].startDate, "dd/MM/yyyy"),
+      dateEnd: format(range[0].endDate, "dd/MM/yyyy"),
       room: checkedRoom,
       price: detail?.cheapestPrice * totalDays * checkedRoom.length,
     });
