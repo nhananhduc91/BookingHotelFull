@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { Fragment } from "react";
 import { useState } from "react";
 import AdminLayouts from "../../layouts/adminLayouts/AdminLayouts";
 import { apiUrl } from "../../utils/api";

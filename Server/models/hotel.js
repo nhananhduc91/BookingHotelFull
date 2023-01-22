@@ -34,7 +34,7 @@ const hotelSchema = new Schema({
     require: true
   },
   featured: {
-    type: String,
+    type: Boolean,
     require: true,
   },
   rooms: {

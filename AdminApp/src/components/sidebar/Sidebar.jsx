@@ -25,10 +25,18 @@ export default function Sidebar() {
         <i className="fa fa-user me-2"></i>
         Users
       </p>
-      <p>
+      <p
+        onClick={() => {
+          navigate("/admin/hotels");
+        }}
+      >
         <i className="fa fa-hotel me-2"></i>Hotels
       </p>
-      <p>
+      <p
+        onClick={() => {
+          navigate("/admin/rooms");
+        }}
+      >
         <i className="fa fa-bed me-2"></i>Rooms
       </p>
       <p
@@ -46,7 +54,11 @@ export default function Sidebar() {
       >
         <i className="fa fa-hotel me-2"></i>New Hotel
       </p>
-      <p>
+      <p
+        onClick={() => {
+          navigate("/admin/addRoom");
+        }}
+      >
         <i className="fa fa-bed me-2"></i>New Room
       </p>
       <h5>USER</h5>

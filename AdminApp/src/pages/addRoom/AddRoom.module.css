@@ -1,0 +1,37 @@
+.addRoomForm {
+  margin-top: 30px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.addRoomForm p {
+  margin-bottom: 5px;
+}
+
+.addRoomForm input {
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.addRoomForm select {
+  width: 300px;
+  margin-bottom: 5px;
+}
+
+.addRoomForm textarea {
+  width: 100%;
+}
+
+.addRoomForm button {
+  margin-top: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  background-color: #00684a;
+}

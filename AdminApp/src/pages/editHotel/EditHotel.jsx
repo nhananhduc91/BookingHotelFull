@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminLayouts from "../../layouts/adminLayouts/AdminLayouts";
-import { apiUrl } from "../../utils/api";
-import styles from "./AddHotel.module.css";
+import { apiUrl, DOMAIN } from "../../utils/api";
+import styles from "./EditHotel.module.css";
 
-export default function AddHotel() {
+export default function EditHotel() {
+  const { hotelId } = useParams();
   const navigate = useNavigate();
   const [hotelInput, setHotelInput] = useState({
     name: "",
@@ -21,6 +22,16 @@ export default function AddHotel() {
     rooms: "",
   });
 
+  const fetchHotel = async () => {
+    const response = await fetch(`${DOMAIN}hotel/${hotelId}`);
+    const data = await response.json();
+    setHotelInput(data);
+  };
+
+  useEffect(() => {
+    fetchHotel();
+  }, []);
+
   const handleChange = (e) => {
     let { value, name } = e.target;
     const newHotelInput = { ...hotelInput, [name]: value };
@@ -29,12 +40,13 @@ export default function AddHotel() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(apiUrl.postAddHotel, {
+    fetch(apiUrl.postUpdateHotel, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        hotelId,
         hotelInput,
       }),
     });
@@ -43,8 +55,8 @@ export default function AddHotel() {
 
   return (
     <AdminLayouts>
-      <div className={styles.addHotelForm}>
-        <h3>Add New Hotel</h3>
+      <div className={styles.editHotelForm}>
+        <h3>Edit Hotel</h3>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-6">
@@ -153,7 +165,7 @@ export default function AddHotel() {
               rows="5"
             ></textarea>
           </div>
-          <button type="submit">Send</button>
+          <button type="submit">Edit</button>
         </form>
       </div>
     </AdminLayouts>
