@@ -24,9 +24,27 @@
   color: #fff;
 }
 
-.transaction table tbody tr .status {
+.transaction table tbody tr .statusBooked {
   color: #fff;
   background-color: #00684a;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.transaction table tbody tr .statusCheckIn {
+  color: #fff;
+  background-color: #3f6ad8;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.transaction table tbody tr .statusCheckOut {
+  color: #fff;
+  background-color: #f7b924;
   text-align: center;
   padding: 5px;
   margin-bottom: 0;

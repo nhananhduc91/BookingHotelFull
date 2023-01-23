@@ -6,7 +6,17 @@ exports.postLogin = (req, res, next) => {
   User.findOne({ email, password })
     .then((user) => {
       if (user) {
-        res.send({ userInfo: { email: user.email, fullName: user.fullName, phoneNumber: user.phoneNumber, userName: user.userName, isAdmin: user.isAdmin }, message: "Login successful!", loginStatus: true });
+        res.send({
+          userInfo: {
+            email: user.email,
+            fullName: user.fullName,
+            phoneNumber: user.phoneNumber,
+            userName: user.userName,
+            isAdmin: user.isAdmin,
+          },
+          message: "Login successful!",
+          loginStatus: true,
+        });
       } else {
         res.send({ message: "Login failed!", loginStatus: false });
       }
@@ -20,7 +30,7 @@ exports.postUser = (req, res, next) => {
   const { userName, password, fullName, phoneNumber, email, isAdmin } =
     req.body.userData;
   User.findOne({ $or: [{ email }, { userName }] })
-    .then(user => {
+    .then((user) => {
       if (!user) {
         const user = new User({
           userName,
@@ -31,27 +41,41 @@ exports.postUser = (req, res, next) => {
           isAdmin,
         });
         user.save();
-        res.send({ message: "Register successful!", forward: true })
+        res.send({ message: "Register successful!", forward: true });
       } else {
-        res.send({ message: "User already registered! Please choose another email!", forward: false });
+        res.send({
+          message: "User already registered! Please choose another email!",
+          forward: false,
+        });
       }
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
     });
 };
 
 exports.getTransaction = (req, res, next) => {
   const { userName } = req.params;
-  Transaction
-    .find({ "user": userName })
-    .then(transaction => {
+  Transaction.find({ user: userName })
+    .then((transaction) => {
       res.send(transaction);
-    }).catch(err => console.log(err));
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.addTransaction = (req, res, next) => {
-  const { user, hotel, room, dateStart, dateEnd, price, payment, status } = req.body.bookingData;
-  const transaction = new Transaction({ user, hotel, room, dateStart, dateEnd, price, payment, status });
+  const { user, hotel, room, dateStart, dateEnd, price, payment, status } =
+    req.body.bookingData;
+  const transaction = new Transaction({
+    user,
+    hotel,
+    room,
+    dateStart,
+    dateEnd,
+    price,
+    payment,
+    status,
+  });
   transaction
     .save()
     .then(() => {

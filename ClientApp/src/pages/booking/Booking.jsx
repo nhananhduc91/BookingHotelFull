@@ -10,10 +10,10 @@ import styles from "./Booking.module.css";
 import format from "date-fns/format";
 
 export default function Booking() {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(getFromStorage("userSignIn"));
   const [detail, setDetail] = useState();
   const { hotelId } = useParams();
-  const navigate = useNavigate();
   const [checkedRoom, setCheckRoom] = useState([]);
   const [range, setRange] = useState([
     {
@@ -26,14 +26,14 @@ export default function Booking() {
   const totalDays = Math.ceil(difference / (1000 * 3600 * 24));
 
   const [bookingData, setBookingData] = useState({
-    user: userInfo.userName,
+    user: userInfo?.userName,
     hotel: "",
     room: [],
     dateStart: format(range[0].startDate, "dd/MM/yyyy"),
     dateEnd: format(range[0].endDate, "dd/MM/yyyy"),
     price: "",
     payment: "",
-    status: "Booked",
+    status: "",
   });
 
   const fetchHotelDetail = async () => {
@@ -47,9 +47,13 @@ export default function Booking() {
       hotel: data.name,
     });
   };
-
+  console.log(userInfo);
   useEffect(() => {
     fetchHotelDetail();
+    if (!userInfo) {
+      alert("Please login first to confirm booking");
+      navigate("/login");
+    }
   }, []);
 
   useEffect(() => {
@@ -134,7 +138,7 @@ export default function Booking() {
               <form>
                 <p>Your Full Name</p>
                 <input
-                  value={userInfo.fullName}
+                  value={userInfo?.fullName}
                   onChange={handleChangeInfo}
                   name="fullName"
                   type="text"
@@ -142,7 +146,7 @@ export default function Booking() {
                 />
                 <p>Your Email</p>
                 <input
-                  value={userInfo.email}
+                  value={userInfo?.email}
                   onChange={handleChangeInfo}
                   name="email"
                   type="email"
@@ -150,7 +154,7 @@ export default function Booking() {
                 />
                 <p>Your Phone Number</p>
                 <input
-                  value={userInfo.phoneNumber}
+                  value={userInfo?.phoneNumber}
                   onChange={handleChangeInfo}
                   name="fullName"
                   type="text"
@@ -186,6 +190,21 @@ export default function Booking() {
           <h4 className="my-3 fw-bold">Total Bill: ${bookingData.price}</h4>
           <div className={styles.paymentMethod}>
             <select
+              className="me-2"
+              required
+              value={bookingData.status}
+              name="status"
+              onChange={handleChangeBooking}
+            >
+              <option disabled={true} value="">
+                Select Status
+              </option>
+              <option value="Booked">Booked</option>
+              <option value="Check In">Check In</option>
+              <option value="Check Out">Check Out</option>
+            </select>
+            <select
+              required
               value={bookingData.payment}
               name="payment"
               onChange={handleChangeBooking}

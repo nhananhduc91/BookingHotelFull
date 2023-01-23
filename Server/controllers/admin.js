@@ -5,38 +5,65 @@ const Room = require("../models/room");
 const { Types } = require("mongoose");
 const ObjectId = Types.ObjectId;
 
-
 exports.getAllTransactions = (req, res, next) => {
   Transaction.find()
-    .then(transactions => {
+    .then((transactions) => {
       res.send(transactions);
-    }).catch(err => console.log(err))
-}
+    })
+    .catch((err) => console.log(err));
+};
 
 exports.getAllUsers = (req, res, next) => {
   User.find({ isAdmin: false })
-    .then(users => {
+    .then((users) => {
       res.send(users);
-    }).catch(err => console.log(err))
-}
+    })
+    .catch((err) => console.log(err));
+};
 
 exports.getAllHotels = (req, res, next) => {
   Hotel.find()
-    .then(hotels => {
+    .then((hotels) => {
       res.send(hotels);
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getAllRooms = (req, res, next) => {
   Room.find()
-    .then(rooms => {
+    .then((rooms) => {
       res.send(rooms);
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postAddHotel = (req, res, next) => {
-  const { name, city, distance, desc, photos, type, address, rating, cheapestPrice, featured, rooms } = req.body.hotelInput;
-  const hotel = new Hotel({ name, city, distance, desc, photos, type, address, rating, cheapestPrice, featured, rooms });
+  const {
+    name,
+    city,
+    distance,
+    desc,
+    photos,
+    type,
+    address,
+    rating,
+    cheapestPrice,
+    featured,
+    rooms,
+  } = req.body.hotelInput;
+  const hotel = new Hotel({
+    name,
+    city,
+    distance,
+    desc,
+    photos,
+    type,
+    address,
+    rating,
+    cheapestPrice,
+    featured,
+    rooms,
+  });
   hotel.save();
   res.end();
 };
@@ -53,7 +80,8 @@ exports.postDeleteHotel = (req, res, next) => {
   Hotel.findByIdAndRemove(hotelId)
     .then(() => {
       res.end();
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postDeleteRoom = (req, res, next) => {
@@ -61,22 +89,36 @@ exports.postDeleteRoom = (req, res, next) => {
   Room.findByIdAndRemove(roomId)
     .then(() => {
       res.end();
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getHotelDetail = (req, res, next) => {
   const { hotelId } = req.params;
   Hotel.findOne({ _id: ObjectId(hotelId) })
-    .then(hotel => {
+    .then((hotel) => {
       res.send(hotel);
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postUpdateHotel = (req, res, next) => {
   const hotelId = req.body.hotelId;
-  const { name, city, distance, desc, photos, type, address, rating, cheapestPrice, featured, rooms } = req.body.hotelInput;
+  const {
+    name,
+    city,
+    distance,
+    desc,
+    photos,
+    type,
+    address,
+    rating,
+    cheapestPrice,
+    featured,
+    rooms,
+  } = req.body.hotelInput;
   Hotel.findById(hotelId)
-    .then(hotel => {
+    .then((hotel) => {
       hotel.name = name;
       hotel.city = city;
       hotel.distance = distance;
@@ -89,32 +131,36 @@ exports.postUpdateHotel = (req, res, next) => {
       hotel.featured = featured;
       hotel.rooms = rooms;
       return hotel.save();
-    }).then((result) => {
-      res.send(result)
-    }).catch(err => console.log(err))
+    })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => console.log(err));
 };
-
 
 exports.getRoomDetail = (req, res, next) => {
   const { roomId } = req.params;
   Room.findOne({ _id: ObjectId(roomId) })
-    .then(room => {
+    .then((room) => {
       res.send(room);
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postUpdateRoom = (req, res, next) => {
   const roomId = req.body.roomId;
   const { title, price, maxPeople, desc, roomNumbers } = req.body.roomInput;
   Room.findById(roomId)
-    .then(room => {
+    .then((room) => {
       room.title = title;
       room.price = price;
       room.maxPeople = maxPeople;
       room.desc = desc;
       room.roomNumbers = roomNumbers;
       return room.save();
-    }).then(result => {
+    })
+    .then((result) => {
       res.send(result);
-    }).catch(err => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };

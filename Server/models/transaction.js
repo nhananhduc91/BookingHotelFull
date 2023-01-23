@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const transactionSchema = new Schema({
   user: {
@@ -7,32 +7,32 @@ const transactionSchema = new Schema({
   },
   hotel: {
     type: String,
-    require: true
+    require: true,
   },
   room: {
     type: Array,
-    require: true
+    require: true,
   },
   dateStart: {
     type: String,
-    require: true
+    require: true,
   },
   dateEnd: {
     type: String,
-    require: true
+    require: true,
   },
   price: {
     type: Number,
-    require: true
+    require: true,
   },
   payment: {
     type: String,
-    require: true
+    require: true,
   },
   status: {
     type: String,
-    require: true
-  }
+    require: true,
+  },
 });
 
-module.exports = model('Transaction', transactionSchema);
+module.exports = model("Transaction", transactionSchema);

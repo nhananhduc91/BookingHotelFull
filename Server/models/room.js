@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const roomSchema = new Schema({
   title: {
@@ -7,20 +7,20 @@ const roomSchema = new Schema({
   },
   price: {
     type: Number,
-    require: true
+    require: true,
   },
   maxPeople: {
     type: Number,
-    require: true
+    require: true,
   },
   desc: {
     type: String,
-    require: true
+    require: true,
   },
   roomNumbers: {
     type: Number,
-    require: true
+    require: true,
   },
 });
 
-module.exports = model('Room', roomSchema);
+module.exports = model("Room", roomSchema);

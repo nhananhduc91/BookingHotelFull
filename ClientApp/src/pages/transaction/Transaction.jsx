@@ -58,7 +58,15 @@ export default function Transaction() {
                     <td>${trans.price}</td>
                     <td>{trans.payment}</td>
                     <td>
-                      <p className={styles.status}>{trans.status}</p>
+                      {trans.status === "Booked" && (
+                        <p className={styles.statusBooked}>{trans.status}</p>
+                      )}
+                      {trans.status === "Check In" && (
+                        <p className={styles.statusCheckIn}>{trans.status}</p>
+                      )}
+                      {trans.status === "Check Out" && (
+                        <p className={styles.statusCheckOut}>{trans.status}</p>
+                      )}
                     </td>
                   </tr>
                 );
