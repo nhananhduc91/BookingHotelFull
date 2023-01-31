@@ -6,12 +6,12 @@ import { DOMAIN } from "../../utils/api";
 import styles from "./Transaction.module.css";
 
 export default function Transaction() {
-  const { userName } = useParams();
-  const [transaction, setTranaction] = useState();
+  const { userId } = useParams();
+  const [transaction, setTransaction] = useState();
   const fetchTransaction = async () => {
-    const response = await fetch(`${DOMAIN}transaction/${userName}`);
+    const response = await fetch(`${DOMAIN}transaction/${userId}`);
     const data = await response.json();
-    setTranaction(data);
+    setTransaction(data);
   };
 
   useEffect(() => {

@@ -1,8 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const transactionSchema = new Schema({
-  user: {
-    type: String,
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     require: true,
   },
   hotel: {

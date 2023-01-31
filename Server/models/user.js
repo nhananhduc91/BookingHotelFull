@@ -25,6 +25,11 @@ const userSchema = new Schema({
     type: Boolean,
     require: true,
   },
+  transactions: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Transaction'
+  }]
 });
+
 
 module.exports = model("User", userSchema);

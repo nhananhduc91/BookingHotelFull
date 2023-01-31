@@ -26,7 +26,7 @@ export default function Booking() {
   const totalDays = Math.ceil(difference / (1000 * 3600 * 24));
 
   const [bookingData, setBookingData] = useState({
-    user: userInfo?.userName,
+    userId: userInfo?.id,
     hotel: "",
     room: [],
     dateStart: format(range[0].startDate, "dd/MM/yyyy"),
@@ -47,7 +47,6 @@ export default function Booking() {
       hotel: data.name,
     });
   };
-  console.log(userInfo);
   useEffect(() => {
     fetchHotelDetail();
     if (!userInfo) {
@@ -98,7 +97,7 @@ export default function Booking() {
         bookingData,
       }),
     });
-    navigate(`/transaction/${userInfo.userName}`);
+    navigate(`/transaction/${userInfo.id}`);
   };
 
   return (

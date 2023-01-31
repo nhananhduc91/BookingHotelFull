@@ -35,6 +35,7 @@ export default function Login() {
     alert(data.message);
     if (data.loginStatus && !data.userInfo.isAdmin) {
       saveToStorage("userSignIn", {
+        id: data.userInfo.id,
         email: data.userInfo.email,
         fullName: data.userInfo.fullName,
         phoneNumber: data.userInfo.phoneNumber,

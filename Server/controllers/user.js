@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Transaction = require("../models/transaction");
+const mongoose = require('mongoose');
 
 exports.postLogin = (req, res, next) => {
   const { email, password } = req.body.loginData;
@@ -8,6 +9,7 @@ exports.postLogin = (req, res, next) => {
       if (user) {
         res.send({
           userInfo: {
+            id: user._id,
             email: user.email,
             fullName: user.fullName,
             phoneNumber: user.phoneNumber,
@@ -55,19 +57,20 @@ exports.postUser = (req, res, next) => {
 };
 
 exports.getTransaction = (req, res, next) => {
-  const { userName } = req.params;
-  Transaction.find({ user: userName })
+  const { userId } = req.params;
+  Transaction.find({ userId })
     .then((transaction) => {
+      console.log(transaction);
       res.send(transaction);
     })
     .catch((err) => console.log(err));
 };
 
 exports.addTransaction = (req, res, next) => {
-  const { user, hotel, room, dateStart, dateEnd, price, payment, status } =
+  const { userId, hotel, room, dateStart, dateEnd, price, payment, status } =
     req.body.bookingData;
   const transaction = new Transaction({
-    user,
+    userId: mongoose.Types.ObjectId(userId),
     hotel,
     room,
     dateStart,
@@ -76,8 +79,13 @@ exports.addTransaction = (req, res, next) => {
     payment,
     status,
   });
-  transaction
-    .save()
+
+  User.findOne({ _id: mongoose.Types.ObjectId(userId) }).then(user => {
+    user.transactions.push(transaction._id);
+    user.save();
+    transaction
+      .save()
+  })
     .then(() => {
       res.end();
     })
