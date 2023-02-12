@@ -10,11 +10,7 @@ export default function SearchPopup() {
     destination: "",
     checkIn: "",
     checkOut: "",
-    minPricePerNight: 0,
-    maxPricePerNight: 0,
-    adult: 0,
-    children: 0,
-    room: 0,
+    room: "",
   });
 
   const handleChange = (e) => {
@@ -62,52 +58,14 @@ export default function SearchPopup() {
         />
         <div className={styles.options}>
           <h6>Options</h6>
-          <div>
-            <span>Min price per night</span>
-            <input
-              required
-              value={searchInput.minPricePerNight}
-              type="number"
-              name="minPricePerNight"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <span>Max price per night</span>
-            <input
-              required
-              value={searchInput.maxPricePerNight}
-              type="number"
-              name="maxPricePerNight"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <span>Adult</span>
-            <input
-              required
-              value={searchInput.adult}
-              type="number"
-              name="adult"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <span>Children</span>
-            <input
-              required
-              value={searchInput.children}
-              type="number"
-              name="children"
-              onChange={handleChange}
-            />
-          </div>
+
           <div>
             <span>Room</span>
             <input
               required
               value={searchInput.room}
               type="number"
+              min="1"
               name="room"
               onChange={handleChange}
             />

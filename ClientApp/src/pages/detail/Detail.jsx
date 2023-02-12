@@ -7,8 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DOMAIN } from "../../utils/api";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getFromStorage } from "../../utils/storage";
 
 export default function Detail() {
+  const userInfo = getFromStorage("userSignIn");
   const [detail, setDetail] = useState();
   const { hotelId } = useParams();
   const navigate = useNavigate();
@@ -45,9 +47,7 @@ export default function Detail() {
           </div>
         </div>
         <div className={styles.hotelImg}>
-          {detail?.photos.map((img, index) => {
-            return <img key={index} src={img} alt="hotel" />;
-          })}
+          <img src={detail?.photos} alt="hotel" />
         </div>
         <div>
           <div className="row">
@@ -62,7 +62,12 @@ export default function Detail() {
                 </p>
                 <button
                   onClick={() => {
-                    navigate(`/booking/${hotelId}`);
+                    if (!userInfo) {
+                      alert("Please login first to confirm booking");
+                      navigate("/login");
+                    } else {
+                      navigate(`/booking/${hotelId}`);
+                    }
                   }}
                 >
                   Reserve or Book Now!

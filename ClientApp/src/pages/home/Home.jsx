@@ -17,6 +17,8 @@ const Home = () => {
     const data = await response.json();
     setHotelByRegion(data);
   };
+
+  //Lọc danh sách các khách sạn theo thành phố
   const hotelInHaNoi = hotelByRegion?.filter(
     (hotel) => hotel.city === "Ha Noi"
   );
@@ -26,6 +28,11 @@ const Home = () => {
   const hotelInDaNang = hotelByRegion?.filter(
     (hotel) => hotel.city === "Da Nang"
   );
+
+  //Sắp xếp rating khách sạn từ cao xuống thấp
+  const hotelRatingDescending = hotelByRegion?.sort((a, b) => {
+    return b.rating - a.rating;
+  });
 
   useEffect(() => {
     fetchHotelByRegion();
@@ -91,17 +98,17 @@ const Home = () => {
           </div>
           <h3 className={styles.propertyTitle}>Homes Guests Love</h3>
           <div className="row">
-            {hotelByRegion?.slice(0, 4).map((hotel, index) => {
+            {hotelRatingDescending?.slice(0, 3).map((hotel, index) => {
               return (
                 <div
                   onClick={() => {
-                    navigate(`hotel/${hotel._id.$oid}`);
+                    navigate(`hotel/${hotel._id}`);
                   }}
                   key={index}
-                  className="col-6 col-md-3 mb-2"
+                  className="col-6 col-md-4 mb-2"
                 >
                   <div className={styles.hotelItem}>
-                    <img src={hotel.photos[2]} alt="hotel" />
+                    <img src={hotel.photos} alt="hotel" />
                     <p className={styles.name}>
                       <a href="/#">{hotel.name}</a>
                     </p>

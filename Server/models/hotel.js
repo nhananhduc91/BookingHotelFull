@@ -37,10 +37,12 @@ const hotelSchema = new Schema({
     type: Boolean,
     require: true,
   },
-  rooms: {
-    type: String,
-    require: true,
-  },
+  rooms: [
+    {
+      type: Schema.Types.ObjectId,
+      require: true,
+    }
+  ],
   type: {
     type: String,
     require: true,

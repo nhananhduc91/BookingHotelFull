@@ -35,15 +35,8 @@
   cursor: pointer;
 }
 
-.hotelImg {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
 .hotelImg img {
-  width: 100%;
+  width: 600px;
 }
 
 .description {

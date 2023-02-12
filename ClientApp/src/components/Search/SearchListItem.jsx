@@ -8,7 +8,7 @@ export default function SearchListItem(props) {
     <div className={styles.searchItem}>
       <div className="row">
         <div className="col-12 col-md-3 mb-2">
-          <img src={item.photos[2]} alt="searchList" />
+          <img src={item.photos} alt="searchList" />
         </div>
         <div className="col-7 col-md-6">
           <div className={styles.searchCol2}>

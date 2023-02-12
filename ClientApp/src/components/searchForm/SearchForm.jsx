@@ -23,9 +23,7 @@ export default function SearchForm() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState({
     destination: "",
-    adult: 0,
-    children: 0,
-    room: 0,
+    room: "",
   });
 
   const handleChange = (e) => {
@@ -81,7 +79,7 @@ export default function SearchForm() {
         <form onSubmit={handleSubmit} id={styles.searchForm}>
           <div className="row align-items-center ">
             <div className="col-12 col-md-6 col-lg-3 mb-1">
-              <i className="fa fa-bed"></i>
+              <i className="fa fa-plane"></i>
               <input
                 type="text"
                 placeholder="Where are you going?"
@@ -105,29 +103,13 @@ export default function SearchForm() {
 
             <div className="col-12 col-md-6 col-lg-4 mb-1">
               <div className="d-flex align-items-center">
-                <i className="fa fa-female"></i>
+                <i className="fa fa-bed"></i>
                 <div className={styles.peopleItem}>
                   <input
-                    value={searchInput.adult}
-                    type="number"
-                    name="adult"
-                    onChange={handleChange}
-                  />
-                  <p>adult</p>
-                </div>
-                <div className={styles.peopleItem}>
-                  <input
-                    value={searchInput.children}
-                    type="number"
-                    name="children"
-                    onChange={handleChange}
-                  />
-                  <p>children</p>
-                </div>
-                <div className={styles.peopleItem}>
-                  <input
+                    required
                     value={searchInput.room}
                     type="number"
+                    min="1"
                     name="room"
                     onChange={handleChange}
                   />

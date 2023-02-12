@@ -17,10 +17,10 @@ const roomSchema = new Schema({
     type: String,
     require: true,
   },
-  roomNumbers: {
+  roomNumbers: [{
     type: Number,
     require: true,
-  },
+  }],
 });
 
 module.exports = model("Room", roomSchema);

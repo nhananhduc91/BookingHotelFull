@@ -49,10 +49,6 @@ export default function Booking() {
   };
   useEffect(() => {
     fetchHotelDetail();
-    if (!userInfo) {
-      alert("Please login first to confirm booking");
-      navigate("/login");
-    }
   }, []);
 
   useEffect(() => {

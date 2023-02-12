@@ -27,23 +27,8 @@ export default function Search() {
     setSearchHotels(data);
   };
 
-  const fetchSearchHotelsInHomePage = async () => {
-    const response = await fetch(apiUrl.postSearchInHomePage, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        searchInput,
-      }),
-    });
-    const data = await response.json();
-    setSearchHotels(data);
-  };
-
   useEffect(() => {
     fetchSearchHotels();
-    fetchSearchHotelsInHomePage();
   }, [searchInput]);
 
   return (
