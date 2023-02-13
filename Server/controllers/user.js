@@ -7,6 +7,8 @@ exports.postLogin = (req, res, next) => {
   User.findOne({ email, password })
     .then((user) => {
       if (user) {
+        req.session.isLoggedIn = true;
+        req.session.user = user;
         res.send({
           userInfo: {
             id: user._id,
@@ -18,7 +20,7 @@ exports.postLogin = (req, res, next) => {
           },
           message: "Login successful!",
           loginStatus: true,
-        });
+        })
       } else {
         res.send({ message: "Login failed!", loginStatus: false });
       }
@@ -60,7 +62,6 @@ exports.getTransaction = (req, res, next) => {
   const { userId } = req.params;
   Transaction.find({ userId })
     .then((transaction) => {
-      console.log(transaction);
       res.send(transaction);
     })
     .catch((err) => console.log(err));

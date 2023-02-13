@@ -22,7 +22,7 @@ const userSchema = new Schema({
     require: true,
   },
   isAdmin: {
-    type: Boolean,
+    type: String,
     require: true,
   },
   transactions: [{

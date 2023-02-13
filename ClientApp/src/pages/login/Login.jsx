@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -22,18 +23,21 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(apiUrl.postLogin, {
-      method: "POST",
+
+    const response = await axios({
+      url: apiUrl.postLogin,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      method: "POST",
+      withCredentials: true,
+      data: {
         loginData,
-      }),
+      },
     });
-    const data = await response.json();
+    const data = response.data;
     alert(data.message);
-    if (data.loginStatus && !data.userInfo.isAdmin) {
+    if (data.loginStatus && data.userInfo.isAdmin === "no") {
       saveToStorage("userSignIn", {
         id: data.userInfo.id,
         email: data.userInfo.email,
@@ -42,7 +46,7 @@ export default function Login() {
         userName: data.userInfo.userName,
       });
       navigate("/");
-    } else if (data.loginStatus && data.userInfo.isAdmin) {
+    } else if (data.loginStatus && data.userInfo.isAdmin === "yes") {
       window.location.href = "http://localhost:3001";
     }
   };

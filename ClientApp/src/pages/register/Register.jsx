@@ -14,7 +14,7 @@ export default function Register() {
     fullName: "",
     phoneNumber: "",
     email: "",
-    isAdmin: false,
+    isAdmin: "no",
   });
 
   const handleChange = (e) => {
@@ -92,6 +92,17 @@ export default function Register() {
             placeholder="Enter your email"
             onChange={handleChange}
           />
+          <div className="mb-2">
+            <span className="me-2">Are you an admin?</span>
+            <select
+              value={userData.isAdmin}
+              name="isAdmin"
+              onChange={handleChange}
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
           <div>
             <p className={style.loginLink}>
               Already have an account?{" "}

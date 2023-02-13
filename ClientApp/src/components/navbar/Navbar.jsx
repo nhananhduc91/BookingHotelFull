@@ -26,7 +26,7 @@ export default function Navbar() {
               <button
                 className={styles.registerBtn}
                 onClick={() => {
-                  navigate(`/transaction/${userLogin.userName}`);
+                  navigate(`/transaction/${userLogin.id}`);
                 }}
               >
                 Transactions

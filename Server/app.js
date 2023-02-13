@@ -2,50 +2,76 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 const User = require("./models/user");
+const MONGODB_URI = "mongodb+srv://johnny:beaQlXmebavY31mK@cluster0.xtlpwvn.mongodb.net/hotel";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "http://localhost:3001"],
+  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  credentials: true,
+}
+
+));
+
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: 'sessions'
+});
+
+app.use(
+  session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false,
+    store,
+    cookie: {
+      sameSite: "lax",
+      secure: false,
+      maxAge: 1000 * 60 * 60
+    },
+  })
+);
+
 const userRoute = require("./routes/user");
 const hotelRoute = require('./routes/hotel');
 const adminRoute = require('./routes/admin');
+const { get404 } = require("./controllers/error");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  User.findById("63c77569049403269750ba88")
-    .then((user) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      if (!user) {
+        return next();
+      }
       req.user = user;
       next();
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(err => {
+      next(new Error(err));
     });
 });
 
 app.use(userRoute);
 app.use(hotelRoute);
 app.use('/admin', adminRoute);
+app.use(get404);
+
 
 mongoose
   .connect(
-    "mongodb+srv://johnny:beaQlXmebavY31mK@cluster0.xtlpwvn.mongodb.net/hotel"
+    MONGODB_URI
   )
   .then(() => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          userName: "Johnny",
-          password: "12345678",
-          fullName: "Nhan Anh Duc",
-          phoneNumber: "12345678",
-          email: "duc@admin.com",
-          isAdmin: true,
-        });
-        user.save();
-      }
-    });
     app.listen(5000);
   })
   .catch((err) => {

@@ -14,7 +14,7 @@ exports.getAllTransactions = (req, res, next) => {
 };
 
 exports.getAllUsers = (req, res, next) => {
-  User.find({ isAdmin: false })
+  User.find({ isAdmin: "no" })
     .then((users) => {
       res.send(users);
     })

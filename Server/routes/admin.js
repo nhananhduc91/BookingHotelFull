@@ -1,8 +1,9 @@
 const express = require("express");
 const { getAllTransactions, getAllUsers, postAddHotel, getAllHotels, postAddRoom, getAllRooms, postDeleteHotel, postDeleteRoom, postUpdateHotel, postUpdateRoom, getHotelDetail, getRoomDetail } = require("../controllers/admin");
 const router = express.Router();
+const isAuth = require('../middleware/is-auth');
 
-router.get("/transactions", getAllTransactions);
+router.get("/transactions", isAuth, getAllTransactions);
 router.get("/users", getAllUsers);
 router.get("/hotels", getAllHotels);
 router.get("/rooms", getAllRooms);
