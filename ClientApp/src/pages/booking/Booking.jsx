@@ -155,12 +155,6 @@ export default function Booking() {
                   type="text"
                   placeholder="Enter your phone number"
                 />
-                <p>Your Identity Card Number</p>
-                <input
-                  name="identity"
-                  type="text"
-                  placeholder="Enter your identity"
-                />
               </form>
             </div>
           </div>

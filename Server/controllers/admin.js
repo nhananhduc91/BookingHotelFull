@@ -3,12 +3,22 @@ const User = require("../models/user");
 const Hotel = require("../models/hotel");
 const Room = require("../models/room");
 const { Types } = require("mongoose");
+const pagination = require("../utils/paging");
 const ObjectId = Types.ObjectId;
 
 exports.getAllTransactions = (req, res, next) => {
   Transaction.find()
     .then((transactions) => {
       res.send(transactions);
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.getPaginationTransactions = (req, res, next) => {
+  const currentPage = Number(req.params.page);
+  Transaction.find()
+    .then((transactions) => {
+      res.send(pagination(currentPage, transactions));
     })
     .catch((err) => console.log(err));
 };

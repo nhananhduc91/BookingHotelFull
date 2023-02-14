@@ -23,12 +23,20 @@ export default function AddRoom() {
     price: "",
     maxPeople: "",
     desc: "",
-    roomNumbers: "",
+    roomNumbers: [],
   });
 
   const handleChange = (e) => {
     let { value, name } = e.target;
-    const newRoomInput = { ...roomInput, [name]: value };
+    const newRoomInput = {
+      ...roomInput,
+      [name]: value,
+      roomNumbers: value
+        .split(" ")
+        .join("")
+        .split(",")
+        .map((str) => Number(str)),
+    };
     setRoomInput(newRoomInput);
   };
 
@@ -94,21 +102,11 @@ export default function AddRoom() {
             <input
               value={roomInput.photos}
               required
-              type="number"
+              type="text"
               name="roomNumbers"
-              placeholder="Number"
+              placeholder="Please add comma after every number"
               onChange={handleChange}
             />
-            <p>Choose A Hotel</p>
-            <select name="hotel">
-              {hotels?.map((hotel, index) => {
-                return (
-                  <option key={index} value={hotel.name}>
-                    {hotel.name}
-                  </option>
-                );
-              })}
-            </select>
           </div>
           <button type="submit">Send</button>
         </form>

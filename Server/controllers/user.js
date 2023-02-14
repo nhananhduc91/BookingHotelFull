@@ -21,7 +21,8 @@ exports.postLogin = (req, res, next) => {
             userName: user.userName,
             isAdmin: user.isAdmin,
           },
-          message: user.isAdmin === "yes"? "Login successful!": "Only admin can access this page.",
+          userMessage: 'Login successful',
+          adminMessage: user.isAdmin === "yes" ? "Login successful!" : "Only admin can access this page.",
           loginStatus: true,
         })
       } else {

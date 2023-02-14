@@ -3,22 +3,74 @@ import { useState } from "react";
 import { Fragment } from "react";
 import { useEffect } from "react";
 import AdminLayouts from "../../layouts/adminLayouts/AdminLayouts";
-import { apiUrl } from "../../utils/api";
+import { DOMAIN } from "../../utils/api";
 import styles from "./Transactions.module.css";
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState();
+
   const fetchTransaction = async () => {
-    const response = await fetch(apiUrl.getAllTransactions, {
+    const response = await fetch(`${DOMAIN}transactions/${currentPage}`, {
       credentials: "include",
     });
     const data = await response.json();
-    setTransactions(data);
+    setTransactions(data.results);
+    setTotalPages(data.totalPage);
   };
 
   useEffect(() => {
     fetchTransaction();
-  }, []);
+  }, [currentPage]);
+
+  const renderPagination = () => {
+    if (currentPage === 1 && totalPages === 1) {
+      return <p>Page {currentPage}</p>;
+    } else if (currentPage > 1 && totalPages > 1) {
+      return (
+        <>
+          <i
+            className="fa fa-arrow-alt-circle-left"
+            onClick={() => {
+              setCurrentPage(currentPage - 1);
+            }}
+          ></i>
+          <p>Page {currentPage}</p>
+          <i
+            className="fa fa-arrow-alt-circle-right"
+            onClick={() => {
+              setCurrentPage(currentPage + 1);
+            }}
+          ></i>
+        </>
+      );
+    } else if (currentPage === 1 && totalPages > 1) {
+      return (
+        <>
+          <p>Page {currentPage}</p>
+          <i
+            className="fa fa-arrow-alt-circle-right"
+            onClick={() => {
+              setCurrentPage(currentPage + 1);
+            }}
+          ></i>
+        </>
+      );
+    } else if (currentPage === totalPages && totalPages > 1) {
+      return (
+        <>
+          <i
+            className="fa fa-arrow-alt-circle-left"
+            onClick={() => {
+              setCurrentPage(currentPage - 1);
+            }}
+          ></i>
+          <p>Page {currentPage}</p>
+        </>
+      );
+    }
+  };
   return (
     <AdminLayouts>
       <div className={styles.transactionsBoard}>
@@ -66,6 +118,9 @@ export default function Transactions() {
             })}
           </tbody>
         </table>
+      </div>
+      <div className={styles.pagination}>
+        {currentPage && renderPagination()}
       </div>
     </AdminLayouts>
   );

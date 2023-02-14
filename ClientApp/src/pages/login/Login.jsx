@@ -36,6 +36,7 @@ export default function Login() {
       },
     });
     const data = response.data;
+    alert(data.userMessage);
     if (data.loginStatus && data.userInfo.isAdmin === "no") {
       saveToStorage("userSignIn", {
         id: data.userInfo.id,

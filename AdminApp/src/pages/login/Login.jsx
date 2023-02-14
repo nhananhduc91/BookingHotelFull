@@ -32,7 +32,7 @@ export default function Login() {
       credentials: "include",
     });
     const data = await response.json();
-    alert(data.message);
+    alert(data.adminMessage);
     if (data.loginStatus && data.userInfo.isAdmin === "yes") {
       saveToStorage("userSignIn", {
         id: data.userInfo.id,

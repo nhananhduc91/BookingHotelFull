@@ -19,7 +19,6 @@ export default function EditHotel() {
     rating: "",
     cheapestPrice: "",
     featured: true,
-    rooms: "",
   });
 
   const fetchHotel = async () => {
@@ -154,16 +153,6 @@ export default function EditHotel() {
                 <option value={false}>No</option>
               </select>
             </div>
-          </div>
-          <p>Rooms</p>
-          <div>
-            <textarea
-              value={hotelInput.rooms}
-              required
-              name="rooms"
-              onChange={handleChange}
-              rows="5"
-            ></textarea>
           </div>
           <button type="submit">Edit</button>
         </form>

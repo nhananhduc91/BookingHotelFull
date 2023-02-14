@@ -6,7 +6,7 @@ export default function NavbarItem(props) {
     <div className="col-4 col-md  text-center px-0">
       <div className={props.data.active ? styles.navbarActive : ""}>
         <i className={`fa ${props.data.icon}`}></i>
-        <a href="./">{props.data.type}</a>
+        <a href="/">{props.data.type}</a>
       </div>
     </div>
   );

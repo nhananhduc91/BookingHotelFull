@@ -107,7 +107,7 @@ export default function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {transactions?.map((trans, index) => {
+            {transactions?.slice(0, 8).map((trans, index) => {
               return (
                 <tr key={index}>
                   <td>{trans._id}</td>

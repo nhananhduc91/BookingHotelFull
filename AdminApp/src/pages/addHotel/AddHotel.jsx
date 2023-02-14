@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminLayouts from "../../layouts/adminLayouts/AdminLayouts";
@@ -7,6 +8,29 @@ import styles from "./AddHotel.module.css";
 
 export default function AddHotel() {
   const navigate = useNavigate();
+  const [rooms, setRooms] = useState();
+  const [checkedRoom, setCheckRoom] = useState([]);
+
+  const fetchRoom = async () => {
+    const response = await fetch(apiUrl.getAllRooms, {
+      credentials: "include",
+    });
+    const data = await response.json();
+    setRooms(data);
+  };
+  useEffect(() => {
+    fetchRoom();
+  }, []);
+
+  const handleCheckedRoom = (e) => {
+    let { value, checked } = e.target;
+    if (checked === true) {
+      setCheckRoom([...checkedRoom, value]);
+    } else {
+      setCheckRoom(checkedRoom.filter((room) => room !== value));
+    }
+  };
+
   const [hotelInput, setHotelInput] = useState({
     name: "",
     city: "",
@@ -18,7 +42,7 @@ export default function AddHotel() {
     rating: "",
     cheapestPrice: "",
     featured: true,
-    rooms: "",
+    rooms: [],
   });
 
   const handleChange = (e) => {
@@ -26,6 +50,10 @@ export default function AddHotel() {
     const newHotelInput = { ...hotelInput, [name]: value };
     setHotelInput(newHotelInput);
   };
+
+  useEffect(() => {
+    setHotelInput({ ...hotelInput, rooms: checkedRoom });
+  }, [checkedRoom]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -144,16 +172,20 @@ export default function AddHotel() {
               </select>
             </div>
           </div>
-          <p>Rooms</p>
-          <div>
-            <textarea
-              value={hotelInput.rooms}
-              required
-              name="rooms"
-              onChange={handleChange}
-              rows="5"
-            ></textarea>
-          </div>
+          {rooms?.map((room, index) => {
+            return (
+              <div key={index} className={styles.roomList}>
+                <input
+                  value={room._id}
+                  className="me-2"
+                  type="checkbox"
+                  name="rooms"
+                  onChange={handleCheckedRoom}
+                />
+                <label htmlFor="rooms">{room.title}</label>
+              </div>
+            );
+          })}
           <button type="submit">Send</button>
         </form>
       </div>

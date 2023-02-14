@@ -33,3 +33,24 @@
   margin-bottom: 0;
   border-radius: 5px;
 }
+
+.pagination {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination p {
+  margin: 0 10px 0;
+}
+
+.pagination i {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination i:hover {
+  color: #808080;
+}

@@ -104,21 +104,11 @@ export default function EditRoom() {
             <input
               value={roomInput.roomNumbers}
               required
-              type="number"
+              type="text"
               name="roomNumbers"
-              placeholder="Number"
+              placeholder="Please add comma after every number"
               onChange={handleChange}
             />
-            <p>Choose A Hotel</p>
-            <select name="hotel">
-              {hotels?.map((hotel, index) => {
-                return (
-                  <option key={index} value={hotel.name}>
-                    {hotel.name}
-                  </option>
-                );
-              })}
-            </select>
           </div>
           <button type="submit">Edit</button>
         </form>

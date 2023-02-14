@@ -22,8 +22,13 @@
   width: 100px;
 }
 
-.addHotelForm textarea {
-  width: 100%;
+.addHotelForm .roomList {
+  margin-top: 5px;
+}
+
+.addHotelForm .roomList input {
+  width: 20px;
+  text-align: left;
 }
 
 .addHotelForm button {
