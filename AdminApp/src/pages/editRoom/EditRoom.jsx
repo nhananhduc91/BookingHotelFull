@@ -16,12 +16,16 @@ export default function EditRoom() {
     roomNumbers: "",
   });
   const fetchHotel = async () => {
-    const response = await fetch(apiUrl.getAllHotels);
+    const response = await fetch(apiUrl.getAllHotels, {
+      credentials: "include",
+    });
     const data = await response.json();
     setHotels(data);
   };
   const fetchRoom = async () => {
-    const response = await fetch(`${DOMAIN}room/${roomId}`);
+    const response = await fetch(`${DOMAIN}room/${roomId}`, {
+      credentials: "include",
+    });
     const data = await response.json();
     setRoomInput(data);
   };
@@ -49,6 +53,7 @@ export default function EditRoom() {
         roomId,
         roomInput,
       }),
+      credentials: "include",
     });
     navigate("/admin/rooms");
   };

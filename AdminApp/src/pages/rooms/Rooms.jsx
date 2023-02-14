@@ -8,7 +8,9 @@ export default function Rooms() {
   const navigate = useNavigate();
   const [rooms, setRooms] = useState();
   const fetchRoom = async () => {
-    const response = await fetch(apiUrl.getAllRooms);
+    const response = await fetch(apiUrl.getAllRooms, {
+      credentials: "include",
+    });
     const data = await response.json();
     setRooms(data);
   };
@@ -22,6 +24,7 @@ export default function Rooms() {
       body: JSON.stringify({
         roomId,
       }),
+      credentials: "include",
     });
   };
 

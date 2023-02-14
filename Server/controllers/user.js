@@ -8,7 +8,10 @@ exports.postLogin = (req, res, next) => {
     .then((user) => {
       if (user) {
         req.session.isLoggedIn = true;
-        req.session.user = user;
+        req.session.user = {
+          user: user.userName,
+          isAdmin: user.isAdmin
+        };
         res.send({
           userInfo: {
             id: user._id,
@@ -18,7 +21,7 @@ exports.postLogin = (req, res, next) => {
             userName: user.userName,
             isAdmin: user.isAdmin,
           },
-          message: "Login successful!",
+          message: user.isAdmin === "yes"? "Login successful!": "Only admin can access this page.",
           loginStatus: true,
         })
       } else {

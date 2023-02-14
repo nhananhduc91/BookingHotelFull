@@ -9,7 +9,9 @@ export default function Hotels() {
   const [hotels, setHotels] = useState();
 
   const fetchHotel = async () => {
-    const response = await fetch(apiUrl.getAllHotels);
+    const response = await fetch(apiUrl.getAllHotels, {
+      credentials: "include",
+    });
     const data = await response.json();
     setHotels(data);
   };
@@ -23,6 +25,7 @@ export default function Hotels() {
       body: JSON.stringify({
         hotelId,
       }),
+      credentials: "include",
     });
   };
 

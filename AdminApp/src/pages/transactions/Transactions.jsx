@@ -9,7 +9,9 @@ import styles from "./Transactions.module.css";
 export default function Transactions() {
   const [transactions, setTransactions] = useState();
   const fetchTransaction = async () => {
-    const response = await fetch(apiUrl.getAllTransactions);
+    const response = await fetch(apiUrl.getAllTransactions, {
+      credentials: "include",
+    });
     const data = await response.json();
     setTransactions(data);
   };

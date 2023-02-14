@@ -17,34 +17,13 @@
   #loginForm p {
     margin-bottom: 5px;
   }
-
-  #loginForm .adminLogin{
-    text-align: center;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-  }
-
-  #loginForm .adminLogin:hover{
-    color: #0071c2;
-  }
   
   #loginForm input {
     min-width: 300px;
     border: 1px solid #808080;
     border-radius: 5px;
     padding: 5px 10px;
-  }
-
-  #loginForm .registerLink{
-    font-size: 14px;
-    text-align: center;
-  }
-
-  #loginForm .registerLink span{
-    color: #0071c2;
-    cursor: pointer;
+    margin-bottom: 10px;
   }
   
   #loginForm button {

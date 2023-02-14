@@ -36,7 +36,6 @@ export default function Login() {
       },
     });
     const data = response.data;
-    alert(data.message);
     if (data.loginStatus && data.userInfo.isAdmin === "no") {
       saveToStorage("userSignIn", {
         id: data.userInfo.id,
@@ -46,8 +45,6 @@ export default function Login() {
         userName: data.userInfo.userName,
       });
       navigate("/");
-    } else if (data.loginStatus && data.userInfo.isAdmin === "yes") {
-      window.location.href = "http://localhost:3001";
     }
   };
 
@@ -86,6 +83,14 @@ export default function Login() {
             </p>
             <button type="submit">Sign In</button>
           </div>
+          <p
+            className={style.adminLogin}
+            onClick={() => {
+              window.location.href = "http://localhost:3001";
+            }}
+          >
+            Login as an administrtor
+          </p>
         </form>
       </div>
       <Footer />

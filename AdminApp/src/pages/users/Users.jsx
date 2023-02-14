@@ -8,7 +8,9 @@ import styles from "./Users.module.css";
 export default function Users() {
   const [users, setUsers] = useState();
   const fetchUser = async () => {
-    const response = await fetch(apiUrl.getAllUsers);
+    const response = await fetch(apiUrl.getAllUsers, {
+      credentials: "include",
+    });
     const data = await response.json();
     setUsers(data);
   };

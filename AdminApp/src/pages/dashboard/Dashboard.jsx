@@ -11,13 +11,17 @@ export default function Dashboard() {
   const [users, setUsers] = useState();
 
   const fetchTransaction = async () => {
-    const response = await fetch(apiUrl.getAllTransactions);
+    const response = await fetch(apiUrl.getAllTransactions, {
+      credentials: "include",
+    });
     const data = await response.json();
     setTransactions(data);
   };
 
   const fetchUser = async () => {
-    const response = await fetch(apiUrl.getAllUsers);
+    const response = await fetch(apiUrl.getAllUsers, {
+      credentials: "include",
+    });
     const data = await response.json();
     setUsers(data);
   };

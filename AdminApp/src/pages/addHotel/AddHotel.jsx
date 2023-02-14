@@ -37,6 +37,7 @@ export default function AddHotel() {
       body: JSON.stringify({
         hotelInput,
       }),
+      credentials: "include",
     });
     navigate("/admin/hotels");
   };

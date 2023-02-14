@@ -1,0 +1,52 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.transaction h3 {
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.transaction table {
+  width: 100%;
+}
+
+.transaction table thead tr th,
+.transaction table tbody tr td {
+  border: 1.5px solid #c8d6d9;
+  padding: 10px;
+}
+
+.transaction table thead tr th {
+  background-color: #32a4c1;
+  color: #fff;
+}
+
+.transaction table tbody tr .statusBooked {
+  color: #fff;
+  background-color: #00684a;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.transaction table tbody tr .statusCheckIn {
+  color: #fff;
+  background-color: #3f6ad8;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.transaction table tbody tr .statusCheckOut {
+  color: #fff;
+  background-color: #f7b924;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 0;
+  border-radius: 5px;
+}

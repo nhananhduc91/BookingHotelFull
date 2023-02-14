@@ -8,7 +8,9 @@ export default function AddRoom() {
   const navigate = useNavigate();
   const [hotels, setHotels] = useState();
   const fetchHotel = async () => {
-    const response = await fetch(apiUrl.getAllHotels);
+    const response = await fetch(apiUrl.getAllHotels, {
+      credentials: "include",
+    });
     const data = await response.json();
     setHotels(data);
   };
@@ -41,6 +43,7 @@ export default function AddRoom() {
       body: JSON.stringify({
         roomInput,
       }),
+      credentials: "include",
     });
     navigate("/admin/rooms");
   };

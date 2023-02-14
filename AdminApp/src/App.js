@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import EditHotel from './pages/editHotel/EditHotel';
 import EditRoom from './pages/editRoom/EditRoom';
 import Hotels from './pages/hotels/Hotels';
+import Login from './pages/login/Login';
 import PageNotFound from './pages/pageNotFound/PageNotFound';
 import Rooms from './pages/rooms/Rooms';
 import Transactions from './pages/transactions/Transactions';
@@ -15,7 +16,7 @@ function App() {
   return (
     <BrowserRouter >
       <Routes>
-        <Route path='/' element={<Dashboard />} />
+        <Route path='/' element={<Login />} />
         <Route path='/admin/dashboard' element={<Dashboard />} />
         <Route path='/admin/transactions' element={<Transactions />} />
         <Route path='/admin/users' element={<Users />} />

@@ -65,7 +65,7 @@ export default function Sidebar() {
       <p
         onClick={() => {
           removeFromStorage("userSignIn");
-          window.location.href = "http://localhost:3000";
+          window.location.href = "http://localhost:3001";
         }}
       >
         <i className="fa fa-sign-out-alt me-2"></i>Logout
