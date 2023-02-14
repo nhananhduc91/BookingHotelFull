@@ -40,6 +40,7 @@ const hotelSchema = new Schema({
   rooms: [
     {
       type: Schema.Types.ObjectId,
+      ref: 'Room',
       require: true,
     }
   ],

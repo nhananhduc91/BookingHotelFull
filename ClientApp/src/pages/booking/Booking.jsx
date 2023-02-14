@@ -41,6 +41,7 @@ export default function Booking() {
       method: "POST",
     });
     const data = await response.json();
+    // console.log(data);
     setDetail(data);
     setBookingData({
       ...bookingData,
@@ -166,12 +167,12 @@ export default function Booking() {
               return (
                 <div key={index} onChange={handleCheckedRoom}>
                   <input
-                    value={room}
+                    value={room._id}
                     type="checkbox"
                     name="room"
                     className="me-2"
                   />
-                  <label htmlFor="room">{room}</label>
+                  <label htmlFor="room">{room.title}</label>
                 </div>
               );
             })}

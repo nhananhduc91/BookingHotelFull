@@ -10,7 +10,7 @@ import { apiUrl } from "../../utils/api";
 import { useEffect } from "react";
 
 export default function Search() {
-  const [searchHotels, setSearchHotels] = useState();
+  const [searchHotels, setSearchHotels] = useState([]);
   const { searchInput } = useSelector((state) => state.searchInput);
 
   const fetchSearchHotels = async () => {
@@ -42,7 +42,12 @@ export default function Search() {
               <SearchList searchHotels={searchHotels} />
             </div>
           ) : (
-            <SearchPopup />
+            <div className="row">
+              <SearchPopup />
+              <h2 className="col-12 col-lg-9">
+                Sorry, found no hotel meet your requirements...
+              </h2>
+            </div>
           )}
         </div>
       </div>

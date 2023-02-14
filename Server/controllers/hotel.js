@@ -22,7 +22,7 @@ exports.postSearchHotel = (req, res, next) => {
 
 exports.getHotelDetail = (req, res, next) => {
   const { hotelId } = req.params;
-  Hotel.findOne({ _id: hotelId })
+  Hotel.findOne({ _id: hotelId }).populate('rooms')
     .then(hotel => {
       res.json(hotel);
     }).catch(err => {
