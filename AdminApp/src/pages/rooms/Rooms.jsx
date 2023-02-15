@@ -15,8 +15,8 @@ export default function Rooms() {
     setRooms(data);
   };
 
-  const deleteRoom = (roomId) => {
-    fetch(apiUrl.postDeleteRoom, {
+  const deleteRoom = async (roomId) => {
+    const response = await fetch(apiUrl.postDeleteRoom, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,6 +26,8 @@ export default function Rooms() {
       }),
       credentials: "include",
     });
+    const data = await response.json();
+    alert(data.message);
   };
 
   useEffect(() => {

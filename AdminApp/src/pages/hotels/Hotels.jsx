@@ -16,8 +16,8 @@ export default function Hotels() {
     setHotels(data);
   };
 
-  const deleteHotel = (hotelId) => {
-    fetch(apiUrl.postDeleteHotel, {
+  const deleteHotel = async (hotelId) => {
+    const response = await fetch(apiUrl.postDeleteHotel, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,6 +27,8 @@ export default function Hotels() {
       }),
       credentials: "include",
     });
+    const data = await response.json();
+    alert(data.message);
   };
 
   useEffect(() => {
