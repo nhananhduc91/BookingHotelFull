@@ -38,8 +38,8 @@ export default function SearchForm() {
   useEffect(() => {
     setSearchInput({
       ...searchInput,
-      checkIn: format(range[0].startDate, "MM-dd-yyyy"),
-      checkOut: format(range[0].endDate, "MM-dd-yyyy"),
+      checkIn: format(range[0].startDate, "MM/dd/yyyy"),
+      checkOut: format(range[0].endDate, "MM/dd/yyyy"),
     });
   }, [range]);
 
