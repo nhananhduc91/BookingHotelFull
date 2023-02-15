@@ -7,11 +7,12 @@ const transactionSchema = new Schema({
     require: true,
   },
   hotel: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Hotel',
     require: true,
   },
   room: [{
-    type: String,
+    type: Number,
     require: true,
   }],
   dateStart: {

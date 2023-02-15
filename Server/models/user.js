@@ -24,11 +24,7 @@ const userSchema = new Schema({
   isAdmin: {
     type: String,
     require: true,
-  },
-  transactions: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Transaction'
-  }]
+  }
 });
 
 

@@ -4,5 +4,6 @@ export const apiUrl = {
   postUser: `${DOMAIN}user`,
   getHotelByRegion: `${DOMAIN}hotelByRegion`,
   postSearch: `${DOMAIN}searchHotel`,
-  postTransaction: `${DOMAIN}transaction`
+  postTransaction: `${DOMAIN}transaction`,
+  postCheckVacancy: `${DOMAIN}checkAvailableRoom`
 };

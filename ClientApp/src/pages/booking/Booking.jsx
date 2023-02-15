@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -15,6 +15,7 @@ export default function Booking() {
   const [detail, setDetail] = useState();
   const { hotelId } = useParams();
   const [checkedRoom, setCheckRoom] = useState([]);
+  const [selectRoom, setSelectRoom] = useState([]);
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -28,10 +29,6 @@ export default function Booking() {
   const [bookingData, setBookingData] = useState({
     user: userInfo?.id,
     hotel: "",
-    room: [],
-    dateStart: format(range[0].startDate, "dd/MM/yyyy"),
-    dateEnd: format(range[0].endDate, "dd/MM/yyyy"),
-    price: "",
     payment: "",
     status: "",
   });
@@ -44,7 +41,7 @@ export default function Booking() {
     setDetail(data);
     setBookingData({
       ...bookingData,
-      hotel: data.name,
+      hotel: data._id,
     });
   };
   useEffect(() => {
@@ -54,8 +51,8 @@ export default function Booking() {
   useEffect(() => {
     setBookingData({
       ...bookingData,
-      dateStart: format(range[0].startDate, "dd/MM/yyyy"),
-      dateEnd: format(range[0].endDate, "dd/MM/yyyy"),
+      dateStart: format(range[0].startDate, "MM/dd/yyyy"),
+      dateEnd: format(range[0].endDate, "MM/dd/yyyy"),
       room: checkedRoom,
       price: detail?.cheapestPrice * totalDays * checkedRoom.length,
     });
@@ -76,10 +73,29 @@ export default function Booking() {
   const handleCheckedRoom = (e) => {
     let { value, checked } = e.target;
     if (checked === true) {
-      setCheckRoom([...checkedRoom, value]);
+      setCheckRoom([...checkedRoom, Number(value)]);
     } else {
       setCheckRoom(checkedRoom.filter((room) => room !== value));
     }
+  };
+
+  const handleCheckAvailableRoom = async () => {
+    const response = await fetch(apiUrl.postCheckVacancy, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        checkRoomData: {
+          hotel: hotelId,
+          startDate: format(range[0].startDate, "MM/dd/yyyy"),
+          endDate: format(range[0].endDate, "MM/dd/yyyy"),
+        },
+      }),
+      credentials: "include",
+    });
+    const data = await response.json();
+    setSelectRoom(data.rooms);
   };
 
   const handleSubmit = (e) => {
@@ -127,6 +143,14 @@ export default function Booking() {
                 setRange([item.selection]);
               }}
             />
+            <div>
+              <button
+                className="btn btn-success"
+                onClick={handleCheckAvailableRoom}
+              >
+                Check vacancy
+              </button>
+            </div>
           </div>
           <div className="col-12 col-md-7">
             <div className={styles.bookingForm}>
@@ -162,27 +186,29 @@ export default function Booking() {
         </div>
         <form onSubmit={handleSubmit}>
           <div>
-            <h3 className="my-3">Select Rooms</h3>
+            <h3 className="my-3">Select Available Room</h3>
             <div className="row">
-              {detail?.rooms.map((room, index) => {
+              {selectRoom?.map((room, index) => {
                 return (
-                  <div className="col-6" key={index}>
-                    <h5>{room.title}</h5>
-                    <p className="mb-1">Max people: {room.maxPeople}</p>
-                    <p>Price: {room.price}</p>
-                    {room.roomNumbers.map((number, index) => {
-                      return (
-                        <div key={index} onChange={handleCheckedRoom}>
-                          <input
-                            value={number}
-                            type="checkbox"
-                            name="room"
-                            className="me-2"
-                          />
-                          <label htmlFor="room">{number}</label>
-                        </div>
-                      );
-                    })}
+                  <div className="col-6 p-3" key={index}>
+                    <div className={styles.room}>
+                      <h5 className="fw-bold">{room.title}</h5>
+                      <p className="mb-1">Max people: {room.maxPeople}</p>
+                      <p className="mb-1">Price: ${room.price}</p>
+                      {room.roomNumbers.map((number, index) => {
+                        return (
+                          <div key={index} onChange={handleCheckedRoom}>
+                            <input
+                              value={number}
+                              type="checkbox"
+                              name="room"
+                              className="me-2"
+                            />
+                            <label htmlFor="room">{number}</label>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 );
               })}

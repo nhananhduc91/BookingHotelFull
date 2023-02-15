@@ -46,7 +46,7 @@ export default function Transaction() {
                   return (
                     <tr key={index}>
                       <td className="text-center">{index + 1}</td>
-                      <td>{trans.hotel}</td>
+                      <td>{trans.hotel.name}</td>
                       <td>
                         {trans.room?.map((room, index) => {
                           return (
