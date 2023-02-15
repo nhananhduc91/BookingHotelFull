@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const transactionSchema = new Schema({
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     require: true,
@@ -10,10 +10,10 @@ const transactionSchema = new Schema({
     type: String,
     require: true,
   },
-  room: {
-    type: Array,
+  room: [{
+    type: String,
     require: true,
-  },
+  }],
   dateStart: {
     type: String,
     require: true,

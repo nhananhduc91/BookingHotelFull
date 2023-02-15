@@ -64,7 +64,7 @@ exports.postUser = (req, res, next) => {
 
 exports.getTransaction = (req, res, next) => {
   const { userId } = req.params;
-  Transaction.find({ userId })
+  Transaction.find({ user: userId })
     .then((transaction) => {
       res.send(transaction);
     })
@@ -72,10 +72,10 @@ exports.getTransaction = (req, res, next) => {
 };
 
 exports.addTransaction = (req, res, next) => {
-  const { userId, hotel, room, dateStart, dateEnd, price, payment, status } =
+  const { user, hotel, room, dateStart, dateEnd, price, payment, status } =
     req.body.bookingData;
   const transaction = new Transaction({
-    userId: mongoose.Types.ObjectId(userId),
+    user,
     hotel,
     room,
     dateStart,
@@ -85,7 +85,7 @@ exports.addTransaction = (req, res, next) => {
     status,
   });
 
-  User.findOne({ _id: mongoose.Types.ObjectId(userId) }).then(user => {
+  User.findOne({ _id: user }).then(user => {
     user.transactions.push(transaction._id);
     user.save();
     transaction

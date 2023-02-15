@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Navbar from "../../components/navbar/Navbar";
@@ -26,7 +26,7 @@ export default function Booking() {
   const totalDays = Math.ceil(difference / (1000 * 3600 * 24));
 
   const [bookingData, setBookingData] = useState({
-    userId: userInfo?.id,
+    user: userInfo?.id,
     hotel: "",
     room: [],
     dateStart: format(range[0].startDate, "dd/MM/yyyy"),
@@ -41,7 +41,6 @@ export default function Booking() {
       method: "POST",
     });
     const data = await response.json();
-    // console.log(data);
     setDetail(data);
     setBookingData({
       ...bookingData,
@@ -93,6 +92,7 @@ export default function Booking() {
       body: JSON.stringify({
         bookingData,
       }),
+      credentials: "include",
     });
     navigate(`/transaction/${userInfo.id}`);
   };
@@ -163,19 +163,30 @@ export default function Booking() {
         <form onSubmit={handleSubmit}>
           <div>
             <h3 className="my-3">Select Rooms</h3>
-            {detail?.rooms.map((room, index) => {
-              return (
-                <div key={index} onChange={handleCheckedRoom}>
-                  <input
-                    value={room._id}
-                    type="checkbox"
-                    name="room"
-                    className="me-2"
-                  />
-                  <label htmlFor="room">{room.title}</label>
-                </div>
-              );
-            })}
+            <div className="row">
+              {detail?.rooms.map((room, index) => {
+                return (
+                  <div className="col-6" key={index}>
+                    <h5>{room.title}</h5>
+                    <p className="mb-1">Max people: {room.maxPeople}</p>
+                    <p>Price: {room.price}</p>
+                    {room.roomNumbers.map((number, index) => {
+                      return (
+                        <div key={index} onChange={handleCheckedRoom}>
+                          <input
+                            value={number}
+                            type="checkbox"
+                            name="room"
+                            className="me-2"
+                          />
+                          <label htmlFor="room">{number}</label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <h4 className="my-3 fw-bold">Total Bill: ${bookingData.price}</h4>
           <div className={styles.paymentMethod}>
