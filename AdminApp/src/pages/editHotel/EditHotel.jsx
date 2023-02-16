@@ -22,7 +22,9 @@ export default function EditHotel() {
   });
 
   const fetchHotel = async () => {
-    const response = await fetch(`${DOMAIN}hotel/${hotelId}`);
+    const response = await fetch(`${DOMAIN}hotel/${hotelId}`, {
+      credentials: "include",
+    });
     const data = await response.json();
     setHotelInput(data);
   };
@@ -48,6 +50,7 @@ export default function EditHotel() {
         hotelId,
         hotelInput,
       }),
+      credentials: "include",
     });
     navigate("/admin/hotels");
   };
@@ -154,7 +157,7 @@ export default function EditHotel() {
               </select>
             </div>
           </div>
-          <button type="submit">Edit</button>
+          <button type="submit">Update</button>
         </form>
       </div>
     </AdminLayouts>

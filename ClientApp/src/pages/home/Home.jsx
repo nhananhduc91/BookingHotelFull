@@ -98,14 +98,14 @@ const Home = () => {
           </div>
           <h3 className={styles.propertyTitle}>Homes Guests Love</h3>
           <div className="row">
-            {hotelRatingDescending?.slice(0, 3).map((hotel, index) => {
+            {hotelByRegion?.map((hotel, index) => {
               return (
                 <div
                   onClick={() => {
                     navigate(`hotel/${hotel._id}`);
                   }}
                   key={index}
-                  className="col-6 col-md-4 mb-2"
+                  className="col-6 col-md-4 col-lg-3 mb-2"
                 >
                   <div className={styles.hotelItem}>
                     <img src={hotel.photos} alt="hotel" />

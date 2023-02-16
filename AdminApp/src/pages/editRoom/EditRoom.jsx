@@ -43,7 +43,6 @@ export default function EditRoom() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(roomInput);
     fetch(apiUrl.postUpdateRoom, {
       method: "POST",
       headers: {
@@ -110,7 +109,7 @@ export default function EditRoom() {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">Edit</button>
+          <button type="submit">Update</button>
         </form>
       </div>
     </AdminLayouts>

@@ -119,7 +119,7 @@ export default function Booking() {
       <div className={styles.container}>
         <div className="row">
           <div className="col-12 col-md-8">
-            <h3>{detail?.title}</h3>
+            <h3>{detail?.name}</h3>
             <p>{detail?.desc}</p>
           </div>
           <div className="col-12 col-md-4">
