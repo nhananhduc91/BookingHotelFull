@@ -5,6 +5,7 @@ import navbarData from "../../data/navBar.json";
 import { useNavigate } from "react-router-dom";
 import { getFromStorage, removeFromStorage } from "../../utils/storage";
 import { useState } from "react";
+import { apiUrl } from "../../utils/api";
 
 export default function Navbar() {
   const [userLogin, setUserLogin] = useState(getFromStorage("userSignIn"));
@@ -33,6 +34,9 @@ export default function Navbar() {
               </button>
               <button
                 onClick={() => {
+                  fetch(apiUrl.getLogout, {
+                    credentials: "include",
+                  });
                   setUserLogin("");
                   removeFromStorage("userSignIn");
                 }}

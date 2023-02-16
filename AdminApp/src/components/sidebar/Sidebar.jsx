@@ -64,6 +64,9 @@ export default function Sidebar() {
       <h5>USER</h5>
       <p
         onClick={() => {
+          fetch("http://localhost:5000/logout", {
+            credentials: "include",
+          });
           removeFromStorage("userSignIn");
           window.location.href = "http://localhost:3001";
         }}
