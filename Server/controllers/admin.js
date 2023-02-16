@@ -88,40 +88,56 @@ exports.postAddRoom = (req, res, next) => {
 exports.postDeleteHotel = (req, res, next) => {
   const hotelId = req.body.hotelId;
   Transaction.find()
-    .then(transactions => {
+    .then((transactions) => {
       for (const transaction of transactions) {
         if (transaction.hotel.toString() === hotelId) {
-          return res.json({ message: "You can't delete this hotel because there's a transaction with it." });
+          return res.json({
+            message:
+              "You can't delete this hotel because there's a transaction with it.",
+          });
         }
       }
       Hotel.findByIdAndRemove(hotelId)
         .then(() => {
-          return res.json({ message: 'Delete hotel successful.' });
-        }).catch(err => console.log(err));
+          return res.json({ message: "Delete hotel successful." });
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 };
 
 exports.postDeleteRoom = (req, res, next) => {
-  // const roomId = req.body.roomId;
-  // Transaction.find()
-  //   .then(transactions => {
-  //     for (const transaction of transactions) {
-  //       Room.findById(roomId)
-  //         .then(room => {
-  //           for (const number of room.roomNumbers) {
-  //             if (transaction.room.includes(number)) {
-  //               return res.json({ message: "You can't delete this room because there's a transaction with it." });
-  //             }
-  //           }
-  //         })
-  //     }
-  //     // Room.findByIdAndRemove(roomId)
-  //     //   .then(() => {
-  //     //     return res.json({ message: 'Delete room successful.' });
-  //     //   }).catch(err => console.log(err));
-  //   })
-  //   .catch((err) => console.log(err));
+  const roomId = req.body.roomId;
+  Transaction.find()
+    .then((transactions) => {
+      const roomNumber = [];
+      for (const transaction of transactions) {
+        roomNumber.push(...transaction.room);
+      }
+      return roomNumber;
+    })
+    .then((roomNumber) => {
+      let checkBoolean = [];
+      Room.findById(roomId).then((room) => {
+        for (const number of room.roomNumbers) {
+          const checkRoom = roomNumber.includes(number);
+          checkBoolean.push(checkRoom);
+        }
+        if (checkBoolean.includes(true)) {
+          return res.json({
+            message:
+              "You can't delete this hotel because there's a transaction with it.",
+          });
+        } else {
+          Room.findByIdAndRemove(roomId)
+            .then(() => {
+              return res.json({ message: "Delete room successful." });
+            })
+            .catch((err) => console.log(err));
+        }
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getHotelDetail = (req, res, next) => {
@@ -195,4 +211,3 @@ exports.postUpdateRoom = (req, res, next) => {
     })
     .catch((err) => console.log(err));
 };
-
