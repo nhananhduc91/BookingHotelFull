@@ -111,45 +111,46 @@ exports.checkAvailableRoom = (req, res, next) => {
 
   Transaction.find({ hotel })
     .then((transactions) => {
-      for (const transaction of transactions) {
-        const getTimeTransStart = new Date(transaction.dateStart).getTime();
-        const getTimeTransEnd = new Date(transaction.dateEnd).getTime();
-        if (
-          (getTimeStart <= getTimeTransStart &&
-            getTimeEnd >= getTimeTransEnd) ||
-          (getTimeStart <= getTimeTransStart &&
-            getTimeEnd >= getTimeTransStart) ||
-          (getTimeStart <= getTimeTransEnd && getTimeEnd >= getTimeTransEnd)
-        ) {
-          Hotel.findOne({ _id: hotel })
-            .populate("rooms")
-            .then((hotel) => {
-              const filterRoom = [];
-              for (const room of hotel.rooms) {
-                let allNum = room.roomNumbers;
-                for (bookedNum of transaction.room) {
-                  const filterNum = allNum.filter((num) => num !== bookedNum);
-                  allNum = filterNum;
+      if (transactions) {
+        for (const transaction of transactions) {
+          const getTimeTransStart = new Date(transaction.dateStart).getTime();
+          const getTimeTransEnd = new Date(transaction.dateEnd).getTime();
+          if (
+            (getTimeStart <= getTimeTransStart &&
+              getTimeEnd >= getTimeTransEnd) ||
+            (getTimeStart <= getTimeTransStart &&
+              getTimeEnd >= getTimeTransStart) ||
+            (getTimeStart <= getTimeTransEnd && getTimeEnd >= getTimeTransEnd)
+          ) {
+            Hotel.findOne({ _id: hotel })
+              .populate("rooms")
+              .then((hotel) => {
+                const filterRoom = [];
+                for (const room of hotel.rooms) {
+                  let allNum = room.roomNumbers;
+                  for (bookedNum of transaction.room) {
+                    const filterNum = allNum.filter((num) => num !== bookedNum);
+                    allNum = filterNum;
+                  }
+                  room.roomNumbers = allNum;
+                  filterRoom.push(room);
                 }
-                room.roomNumbers = allNum;
-                filterRoom.push(room);
-              }
-              res.json({ rooms: filterRoom, startDate, endDate });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          Hotel.findOne({ _id: hotel })
-            .populate("rooms")
-            .then((hotel) => {
-              res.json({ rooms: hotel.rooms, startDate, endDate });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+                res.json({ rooms: filterRoom, startDate, endDate });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         }
       }
+      Hotel.findOne({ _id: hotel })
+        .populate("rooms")
+        .then((hotel) => {
+          res.json({ rooms: hotel.rooms, startDate, endDate });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);

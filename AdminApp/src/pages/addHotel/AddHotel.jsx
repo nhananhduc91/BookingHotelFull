@@ -147,6 +147,8 @@ export default function AddHotel() {
                 value={hotelInput.rating}
                 required
                 type="number"
+                min="1"
+                max="5"
                 name="rating"
                 placeholder="Rating"
                 onChange={handleChange}
